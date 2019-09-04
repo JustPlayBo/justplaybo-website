@@ -1,0 +1,17 @@
+<h4><b>La nostra Collezione</b></h4>
+<table style="width: 100%">
+  <tr>
+    <th>Titolo</th>
+    <th>Giocatori</th>
+    <th>Durata</th>
+    <!--th>Complessit&agrave;</th-->
+    <th>Dettagli</th>
+  </tr>
+  <tr *ngFor="let game of list">
+    <td>{{game.gsx$title.$t}}</td>
+    <td>{{game.gsx$players.$t}}</td>
+    <td>{{game.gsx$duration.$t}}</td>
+    <!--td></td-->
+    <td><a href="{{game.gsx$bggurl.$t}}" target="_blank">Visit BGG</a></td>
+  </tr>
+</table>
