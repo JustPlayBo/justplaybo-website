@@ -1,15 +1,21 @@
-sudo: true
-dist: trusty
+language: node_js
 
-jobs:
-  include:
-    - stage: build docker image
-      script:
-      - npm install -g @angular/cli
-      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - cd justplaybo && npm install && ng build
-      - docker build -t justplaybo/front:$TRAVIS_BUILD_NUMBER -t justplaybo/front:latest .
-      - docker push justplaybo/front
+node_js:
+   - "9"
+
+sudo: required
+
+services:
+  - docker
+  
+before_script:
+   - npm install -g @angular/cli
+   
+script:
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- cd justplaybo && npm install && ng build
+- docker build -t justplaybo/front:$TRAVIS_BUILD_NUMBER -t justplaybo/front:latest .
+- docker push justplaybo/front
 
 notifications:
   slack:
