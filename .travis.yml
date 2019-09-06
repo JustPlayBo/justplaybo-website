@@ -12,8 +12,8 @@ before_script:
    - npm install -g @angular/cli
    
 script:
+- npm install && ng build
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- cd justplaybo && npm install && ng build
 - docker build -t justplaybo/front:$TRAVIS_BUILD_NUMBER -t justplaybo/front:latest .
 - docker push justplaybo/front
 
