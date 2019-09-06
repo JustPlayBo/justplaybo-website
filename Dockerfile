@@ -1,2 +1,2 @@
 FROM nginx:alpine
-COPY  dist/ /usr/share/nginx/html
+COPY  dist/justplaybo /usr/share/nginx/html
