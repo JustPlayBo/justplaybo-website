@@ -1,5 +1,7 @@
 h4 {
   color: red;
+  margin-bottom: 0;
+  margin-top: 5px;
 }
 table {
   margin-top: 10px;
@@ -8,4 +10,25 @@ table {
     border: 1px solid black;
     border-collapse: collapse;
   }
+}
+
+.div-custom-link {
+  & .custom-link {
+    &, &:visited {
+      color: red;
+    }
+  }
+}
+
+.green {
+  background-color: yellowgreen;
+}
+.yellow {
+  background-color: yellow;
+}
+.red {
+  background-color: red;
+}
+.gray {
+  background-color: gray;
 }

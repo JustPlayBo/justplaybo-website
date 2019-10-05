@@ -1,0 +1,32 @@
+img {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.div-custom-link {
+  & .custom-link {
+    &, &:visited {
+      color: red;
+    }
+  }
+}
+
+p.lists {
+  color: red;
+  font-size: 115%;
+  margin-bottom: 0;
+  margin-top: 5px;
+  & a {
+    cursor: pointer;
+    &, &:visited {
+      color: red;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .responsive {
+    margin: auto;
+    width: 50%;
+  }
+}
