@@ -1,50 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <mat-toolbar-row>
+    <img *ngIf="!isSmallScreen" height="64" src="assets/jp_icon.png" routerLink="/home">
+    <img *ngIf="!isSmallScreen" height="64" src="assets/jp_name.png" routerLink="/home">
+    <img *ngIf="isSmallScreen" height="56" src="assets/jp_icon.png" routerLink="/home">
+    <span class="spacer"></span>
+    <a href="https://www.facebook.com/justplaybologna" target="_blank" mat-icon-button><mat-icon svgIcon="facebook"></mat-icon></a>
+    <a href="https://www.instagram.com/justplaybologna/" target="_blank" mat-icon-button><mat-icon svgIcon="instagram"></mat-icon></a>
+    <a href="https://www.youtube.com/channel/UCNa0SvpXTR_AJ7Tr32N53TQ" target="_blank" mat-icon-button><mat-icon svgIcon="youtube"></mat-icon></a>
+    <a href="https://t.me/justplaybologna" target="_blank" mat-icon-button><mat-icon svgIcon="telegram"></mat-icon></a>
+    <a *ngIf="!isSmallScreen"href="https://steamcommunity.com/groups/justplaybo" target="_blank" mat-icon-button><mat-icon svgIcon="steam"></mat-icon></a>
+    <a *ngIf="!isSmallScreen"href="https://discord.gg/89R5hpM" target="_blank" mat-icon-button><mat-icon svgIcon="discord"></mat-icon></a>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Just Play Bologna</title>
-  <meta name="viewport" content="width=device-width">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129007891-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+<mat-toolbar color="accent" class="mat-elevation-z1">
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'UA-129007891-1');
-
-  </script>
-
-  <style>
-    body {
-      text-align: center;
-      display: block;
-      margin: 0;
-    }
-    .row.no-padding div.col {
-      padding-left: 0;
-      padding-right: 0;
-    }
-  </style>
-
-</head>
-
-<body>
-  <div class="container-fluid">
-    <div class="row no-padding">
-      <div class="col">
-        <img class="col-xs-6 xs-offset-3 mx-auto d-block home-img" src="assets/jp.png" width="180px" routerLink="/home">
-      </div>
-    </div>
-
-    <router-outlet></router-outlet>
-  </div>
-</body>
-
-</html>
+  <mat-toolbar-row>
+    <button mat-button mat-raised-button color="primary" [routerLink]="['/support']"><mat-icon svgIcon="circle-multiple"></mat-icon> Sostienici!</button>
+    <span class="spacer" *ngIf="!isSmallScreen"></span>
+    <button mat-button [routerLink]="['/list']"><mat-icon svgIcon="format-list-text"></mat-icon> I nostri giochi</button>
+    <a *ngIf="!isSmallScreen" target="_blank" href="https://sherlock.justplaybo.it" mat-button><mat-icon svgIcon="dice-multiple"></mat-icon> Sherlock Holmes</a>
+    <a *ngIf="!isSmallScreen" target="_blank" href="https://murder.justplaybo.it" mat-button><mat-icon svgIcon="dice-multiple"></mat-icon> Whitehall/Whitechapel</a>
+    <span class="spacer" *ngIf="!isSmallScreen"></span>
+    </mat-toolbar-row>
+</mat-toolbar>  
+<router-outlet></router-outlet>

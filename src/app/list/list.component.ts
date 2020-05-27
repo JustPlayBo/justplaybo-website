@@ -5,28 +5,32 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.less']
+  styleUrls: ['./list.component.scss'],
+  providers: [ListService]
 })
 export class ListComponent implements OnInit {
   list: any[];
   selectedList: string;
   title: string;
 
+  loading = false;
+
+  displayedColumns = ['gsx$name', 'gsx$players', 'gsx$duration', 'gsx$complexity', 'gsx$bggurl'];
+
   constructor(
     private listService: ListService,
     private route: ActivatedRoute
-    ) { }
+  ) { }
 
   isRowVisible(game): boolean {
-    if (this.selectedList === 'null') {
-      return true;
-    }
-    if (game && game.gsx$list) {
-      if (game.gsx$list.$t === this.selectedList) {
-        return true;
+    if (this.selectedList) {
+      if (game && game.gsx$list) {
+        if (game.gsx$list.$t !== this.selectedList) {
+          return false;
+        }
       }
     }
-    return false;
+    return true;
   }
 
   isSustainLinkVisible(): boolean {
@@ -52,15 +56,16 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
+    this.selectedList = this.route.snapshot.paramMap.get('list');
     this.listService.getList().subscribe(data => {
+      console.log(data);
+      this.loading = false;
       if (data && data.feed) {
-        this.list = data.feed.entry;
+        this.list = data.feed.entry.filter(x => this.isRowVisible(x));
       } else {
         this.list = [];
       }
-
-      this.selectedList = '' + this.route.snapshot.paramMap.get('list');
-      console.error('lista selezionata', this.selectedList);
 
       switch (this.selectedList) {
         case 'A':

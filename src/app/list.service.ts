@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ListService {
   private listUrl = 'https://spreadsheets.google.com/feeds/list/1DIsGpjlwx6AhUIzspwqq6fGBWp6D5lDWbZqyYOMzCRU/1/public/values?alt=json';
 

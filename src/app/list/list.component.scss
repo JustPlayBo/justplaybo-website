@@ -1,0 +1,40 @@
+
+table {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 4px;
+
+  td {
+    text-align: left;
+  }
+}
+
+.mat-row, .mat-header-row{
+  height: 26px;
+}
+
+.div-custom-link {
+  & .custom-link {
+
+    &,
+    &:visited {
+      color: red;
+    }
+  }
+}
+
+.green {
+  background-color: rgb(182, 202, 142);
+}
+
+.yellow {
+  background-color: rgb(255, 255, 174);
+}
+
+.red {
+  background-color: rgb(255, 184, 184);
+}
+
+.gray {
+  background-color: rgb(199, 199, 199);
+}
