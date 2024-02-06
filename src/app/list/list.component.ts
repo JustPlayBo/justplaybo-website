@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ListService } from '../list.service';
 import { ActivatedRoute } from '@angular/router';
 
+declare const Papa: any;
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -15,17 +16,21 @@ export class ListComponent implements OnInit {
 
   loading = false;
 
-  displayedColumns = ['gsx$name', 'gsx$players', 'gsx$duration', 'gsx$complexity', 'gsx$bggurl'];
+  displayedColumns = ['name', 'players', 'duration', 'complexity', 'bggurl'];
 
   constructor(
     private listService: ListService,
     private route: ActivatedRoute
-  ) { }
+  ) { 
+    this.listService.loaded.subscribe(data=>{
+      this.updateList();
+    })
+  }
 
   isRowVisible(game): boolean {
     if (this.selectedList) {
-      if (game && game.gsx$list) {
-        if (game.gsx$list.$t !== this.selectedList) {
+      if (game && game.list) {
+        if (game.list.$t !== this.selectedList) {
           return false;
         }
       }
@@ -41,8 +46,8 @@ export class ListComponent implements OnInit {
   }
 
   getClassName(game): string {
-    if (game && game.gsx$complexity) {
-      switch (game.gsx$complexity.$t) {
+    if (game && game.complexity) {
+      switch (game.complexity.$t) {
         case 'Semplice':
           return 'green';
         case 'Media':
@@ -58,11 +63,15 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.selectedList = this.route.snapshot.paramMap.get('list');
+   this.updateList();
+  }
+
+  updateList(){
     this.listService.getList().subscribe(data => {
       console.log(data);
       this.loading = false;
-      if (data && data.feed) {
-        this.list = data.feed.entry.filter(x => this.isRowVisible(x));
+      if (data.length>0) {
+        this.list = data;
       } else {
         this.list = [];
       }

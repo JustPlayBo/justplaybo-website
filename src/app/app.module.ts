@@ -21,6 +21,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSortModule } from '@angular/material/sort';
 
 import { LayoutModule } from '@angular/cdk/layout';
+import { FaqComponent } from './faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     ListComponent,
     SustainAdComponent,
     SustainComponent,
-    LinksComponent
+    LinksComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 
     MatToolbarModule,
     MatButtonModule,
-    MatTabsModule,
     MatTableModule,
     MatIconModule,
     MatProgressBarModule,

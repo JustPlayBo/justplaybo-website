@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "justplaybo-website-new"
+  "defaultProject": "justplaybo-website-new",
+  "cli": {
+    "analytics": false
+  }
 }

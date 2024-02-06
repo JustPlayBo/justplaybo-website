@@ -1,0 +1,81 @@
+# npm resolution error report
+
+2024-02-06T20:31:27.001Z
+
+While resolving: justplaybo-website-new@0.0.0
+Found: @angular/common@9.0.7
+node_modules/@angular/common
+  @angular/common@"~9.0.2" from the root project
+
+Could not resolve dependency:
+peer @angular/common@"^10.2.5" from ng-google-sheets-db@2.0.0
+node_modules/ng-google-sheets-db
+  ng-google-sheets-db@"*" from the root project
+
+Fix the upstream dependency conflict, or retry
+this command with --force, or --legacy-peer-deps
+to accept an incorrect (and potentially broken) dependency resolution.
+
+Raw JSON explanation object:
+
+{
+  "code": "ERESOLVE",
+  "current": {
+    "name": "@angular/common",
+    "version": "9.0.7",
+    "whileInstalling": {
+      "name": "justplaybo-website-new",
+      "version": "0.0.0",
+      "path": "D:\\Users\\marco\\Documents\\GitHub\\justplaybo-website"
+    },
+    "location": "node_modules/@angular/common",
+    "isWorkspace": false,
+    "dependents": [
+      {
+        "type": "prod",
+        "name": "@angular/common",
+        "spec": "~9.0.2",
+        "from": {
+          "location": "D:\\Users\\marco\\Documents\\GitHub\\justplaybo-website"
+        }
+      }
+    ]
+  },
+  "currentEdge": {
+    "type": "prod",
+    "name": "@angular/common",
+    "spec": "~9.0.2",
+    "from": {
+      "location": "D:\\Users\\marco\\Documents\\GitHub\\justplaybo-website"
+    }
+  },
+  "edge": {
+    "type": "peer",
+    "name": "@angular/common",
+    "spec": "^10.2.5",
+    "error": "INVALID",
+    "from": {
+      "name": "ng-google-sheets-db",
+      "version": "2.0.0",
+      "whileInstalling": {
+        "name": "justplaybo-website-new",
+        "version": "0.0.0",
+        "path": "D:\\Users\\marco\\Documents\\GitHub\\justplaybo-website"
+      },
+      "location": "node_modules/ng-google-sheets-db",
+      "isWorkspace": false,
+      "dependents": [
+        {
+          "type": "prod",
+          "name": "ng-google-sheets-db",
+          "spec": "*",
+          "from": {
+            "location": "D:\\Users\\marco\\Documents\\GitHub\\justplaybo-website"
+          }
+        }
+      ]
+    }
+  },
+  "strictPeerDeps": false,
+  "force": false
+}

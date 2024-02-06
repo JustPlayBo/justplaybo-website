@@ -4,6 +4,7 @@ import { ListComponent } from './list/list.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { FaqComponent } from './faq/faq.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'list/:list', component: ListComponent },
   { path: 'list', component: ListComponent },
   { path: 'supportAd', component: SustainAdComponent },
-  { path: 'support', component: SustainComponent }
+  { path: 'support', component: SustainComponent },
+  { path: 'faq', component: FaqComponent },
 ];
 
 @NgModule({

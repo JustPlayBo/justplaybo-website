@@ -22,6 +22,7 @@
     <button mat-button [routerLink]="['/list']"><mat-icon svgIcon="format-list-text"></mat-icon> I nostri giochi</button>
     <a *ngIf="!isSmallScreen" target="_blank" href="https://sherlock.justplaybo.it" mat-button><mat-icon svgIcon="dice-multiple"></mat-icon> Sherlock Holmes</a>
     <a *ngIf="!isSmallScreen" target="_blank" href="https://murder.justplaybo.it" mat-button><mat-icon svgIcon="dice-multiple"></mat-icon> Whitehall/Whitechapel</a>
+    <a [routerLink]="['/faq']" mat-button><mat-icon svgIcon="information"></mat-icon> FAQ</a>
     <span class="spacer" *ngIf="!isSmallScreen"></span>
     </mat-toolbar-row>
 </mat-toolbar>  

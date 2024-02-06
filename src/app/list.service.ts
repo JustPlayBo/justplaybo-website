@@ -1,14 +1,31 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+
+declare const Papa: any;
 
 @Injectable()
 export class ListService {
-  private listUrl = 'https://spreadsheets.google.com/feeds/list/1DIsGpjlwx6AhUIzspwqq6fGBWp6D5lDWbZqyYOMzCRU/1/public/values?alt=json';
+  private listUrl = 'assets/ludoteca.csv';
 
-  constructor(private http: HttpClient) { }
+  data: any[] = [];
+
+  loaded: EventEmitter<any> = new EventEmitter<any>();
+
+  constructor(
+    private http: HttpClient,
+  ) { 
+    Papa.parse(this.listUrl, {
+      download: true,
+      header: true,
+      complete: (results)=>{
+        this.data = results.data;
+        this.loaded.emit(this.data);
+      }
+    })
+  }
 
   public getList(): Observable<any> {
-    return this.http.get(this.listUrl);
+    return of(this.data);
   }
 }
