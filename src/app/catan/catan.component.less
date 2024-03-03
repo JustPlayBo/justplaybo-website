@@ -1,0 +1,29 @@
+img {
+  width: 100%;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+h1 {
+  color: red;
+}
+
+.div-custom-link {
+  & .custom-link {
+    margin-top: 10px;
+    &, &:visited {
+      color: red;
+    }
+    font-size: 115%;
+    &.big-link {
+      font-size: 250%;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .responsive {
+    margin: auto;
+    width: 30%;
+  }
+}

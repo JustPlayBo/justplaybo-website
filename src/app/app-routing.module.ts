@@ -5,10 +5,11 @@ import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FaqComponent } from './faq/faq.component';
+import { CatanComponent } from './catan/catan.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/supportAd', pathMatch: 'full' },
+  { path: '', redirectTo: '/catan2024', pathMatch: 'full' },
   { path: 'sustain', redirectTo: '/support', pathMatch: 'full' },
   { path: 'sustainAd', redirectTo: '/supportAd', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -17,6 +18,10 @@ const routes: Routes = [
   { path: 'supportAd', component: SustainAdComponent },
   { path: 'support', component: SustainComponent },
   { path: 'faq', component: FaqComponent },
+  {
+    path: 'catan2024',
+    component: CatanComponent
+  }
 ];
 
 @NgModule({

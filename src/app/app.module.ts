@@ -22,6 +22,7 @@ import { MatSortModule } from '@angular/material/sort';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { FaqComponent } from './faq/faq.component';
+import { CatanComponent } from './catan/catan.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FaqComponent } from './faq/faq.component';
     SustainAdComponent,
     SustainComponent,
     LinksComponent,
-    FaqComponent
+    FaqComponent,
+    CatanComponent
   ],
   imports: [
     BrowserModule,
