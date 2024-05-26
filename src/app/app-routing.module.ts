@@ -9,7 +9,11 @@ import { CatanComponent } from './catan/catan.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/catan2024', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
   { path: 'sustain', redirectTo: '/support', pathMatch: 'full' },
   { path: 'sustainAd', redirectTo: '/supportAd', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },

@@ -21,10 +21,8 @@ export class ListComponent implements OnInit {
   constructor(
     private listService: ListService,
     private route: ActivatedRoute
-  ) { 
-    this.listService.loaded.subscribe(data=>{
-      this.updateList();
-    })
+  ) {
+    this.listService.loaded.subscribe(data => this.updateList());
   }
 
   isRowVisible(game): boolean {
@@ -63,14 +61,15 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.selectedList = this.route.snapshot.paramMap.get('list');
-   this.updateList();
+    //this.updateList();
   }
 
-  updateList(){
+  updateList() {
     this.listService.getList().subscribe(data => {
-      console.log(data);
+      console.error(data);
+
       this.loading = false;
-      if (data.length>0) {
+      if (data.length > 0) {
         this.list = data;
       } else {
         this.list = [];
