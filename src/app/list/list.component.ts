@@ -61,13 +61,10 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.selectedList = this.route.snapshot.paramMap.get('list');
-    //this.updateList();
   }
 
   updateList() {
     this.listService.getList().subscribe(data => {
-      console.error(data);
-
       this.loading = false;
       if (data.length > 0) {
         this.list = data;
