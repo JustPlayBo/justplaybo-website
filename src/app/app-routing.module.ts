@@ -22,10 +22,10 @@ const routes: Routes = [
   { path: 'supportAd', component: SustainAdComponent },
   { path: 'support', component: SustainComponent },
   { path: 'faq', component: FaqComponent },
-  {
-    path: 'catan2024',
-    component: CatanComponent
-  }
+  //{
+  //  path: 'catan2024',
+  //  component: CatanComponent
+  //}
 ];
 
 @NgModule({
