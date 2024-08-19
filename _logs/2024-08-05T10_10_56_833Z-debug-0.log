@@ -1,0 +1,69 @@
+0 verbose cli D:\Program Files\nodejs\node.exe D:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.7.0
+2 info using node@v18.20.3
+3 silly config:load:file:d:\Users\marco\AppData\Roaming\nvm\v18.20.3\node_modules\npm\npmrc
+4 silly config:load:file:d:\Users\marco\Documents\GitHub\justplaybo-website\.npmrc
+5 silly config:load:file:C:\Users\marco\.npmrc
+6 silly config:load:file:D:\Program Files\nodejs\etc\npmrc
+7 verbose title npm list
+8 verbose argv "list" "--json"
+9 verbose logfile logs-max:10 dir:d:\Users\marco\Documents\GitHub\justplaybo-website\_logs\2024-08-05T10_10_56_833Z-
+10 verbose logfile d:\Users\marco\Documents\GitHub\justplaybo-website\_logs\2024-08-05T10_10_56_833Z-debug-0.log
+0 verbose cli D:\Program Files\nodejs\node.exe D:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.7.0
+2 info using node@v18.20.3
+3 silly config:load:file:d:\Users\marco\AppData\Roaming\nvm\v18.20.3\node_modules\npm\npmrc
+4 silly config:load:file:d:\Users\marco\Documents\GitHub\justplaybo-website\.npmrc
+5 silly config:load:file:C:\Users\marco\.npmrc
+6 silly config:load:file:D:\Program Files\nodejs\etc\npmrc
+7 verbose title npm outdated
+8 verbose argv "outdated" "--json"
+9 verbose logfile logs-max:10 dir:d:\Users\marco\Documents\GitHub\justplaybo-website\_logs\2024-08-05T10_10_56_833Z-
+10 verbose logfile d:\Users\marco\Documents\GitHub\justplaybo-website\_logs\2024-08-05T10_10_56_833Z-debug-0.log
+11 silly logfile done cleaning log files
+11 silly logfile done cleaning log files
+12 http fetch GET 200 https://registry.npmjs.org/npm 503ms
+12 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: node_modules/@angular/animations
+13 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: node_modules/@angular/animations
+14 notice
+14 notice New minor version of npm available! 10.7.0 -> 10.8.2
+14 notice Changelog: https://github.com/npm/cli/releases/tag/v10.8.2
+14 notice To update run: npm install -g npm@10.8.2
+14 notice  { force: true, [Symbol(proc-log.meta)]: true }
+15 verbose exit 0
+16 info ok
+13 http fetch GET 200 https://registry.npmjs.org/rxjs 1391ms (cache revalidated)
+14 http fetch GET 200 https://registry.npmjs.org/codelyzer 1479ms (cache revalidated)
+15 http fetch GET 200 https://registry.npmjs.org/karma-jasmine 1485ms (cache revalidated)
+16 http fetch GET 200 https://registry.npmjs.org/@types%2fjasminewd2 1571ms (cache updated)
+17 http fetch GET 200 https://registry.npmjs.org/karma-chrome-launcher 1556ms (cache revalidated)
+18 http fetch GET 200 https://registry.npmjs.org/karma-jasmine-html-reporter 1558ms (cache revalidated)
+19 http fetch GET 200 https://registry.npmjs.org/karma-coverage-istanbul-reporter 1567ms (cache revalidated)
+20 http fetch GET 200 https://registry.npmjs.org/protractor 1562ms (cache revalidated)
+21 http fetch GET 200 https://registry.npmjs.org/jasmine-spec-reporter 1604ms (cache revalidated)
+22 http fetch GET 200 https://registry.npmjs.org/jasmine-core 1627ms (cache updated)
+23 http fetch GET 200 https://registry.npmjs.org/@types%2fjasmine 1649ms (cache updated)
+24 http fetch GET 200 https://registry.npmjs.org/tslint 1618ms (cache revalidated)
+25 http fetch GET 200 https://registry.npmjs.org/tslib 1692ms (cache updated)
+26 http fetch GET 200 https://registry.npmjs.org/zone.js 1733ms (cache updated)
+27 http fetch GET 200 https://registry.npmjs.org/ts-node 1709ms (cache updated)
+28 http fetch GET 200 https://registry.npmjs.org/@mdi%2fangular-material 1842ms (cache revalidated)
+29 http fetch GET 200 https://registry.npmjs.org/@angular%2fcdk 1892ms (cache updated)
+30 http fetch GET 200 https://registry.npmjs.org/karma 1879ms (cache updated)
+31 http fetch GET 200 https://registry.npmjs.org/@angular%2fanimations 2019ms (cache updated)
+32 http fetch GET 200 https://registry.npmjs.org/@angular%2fcore 2195ms (cache updated)
+33 http fetch GET 200 https://registry.npmjs.org/@angular%2fcli 2196ms (cache updated)
+34 http fetch GET 200 https://registry.npmjs.org/@angular%2flanguage-service 2224ms (cache updated)
+35 http fetch GET 200 https://registry.npmjs.org/@angular%2fcompiler 2281ms (cache updated)
+36 http fetch GET 200 https://registry.npmjs.org/@angular%2fcommon 2315ms (cache updated)
+37 http fetch GET 200 https://registry.npmjs.org/@angular%2fplatform-browser 2319ms (cache updated)
+38 http fetch GET 200 https://registry.npmjs.org/@angular%2fforms 2348ms (cache updated)
+39 http fetch GET 200 https://registry.npmjs.org/@angular%2frouter 2351ms (cache updated)
+40 http fetch GET 200 https://registry.npmjs.org/@angular%2fmaterial 2388ms (cache updated)
+41 http fetch GET 200 https://registry.npmjs.org/@angular%2fplatform-browser-dynamic 2397ms (cache updated)
+42 http fetch GET 200 https://registry.npmjs.org/@angular%2fcompiler-cli 2406ms (cache updated)
+43 http fetch GET 200 https://registry.npmjs.org/@types%2fnode 2483ms (cache updated)
+44 http fetch GET 200 https://registry.npmjs.org/@angular-devkit%2fbuild-angular 2634ms (cache updated)
+45 http fetch GET 200 https://registry.npmjs.org/typescript 2730ms (cache updated)
+46 verbose exit 1
+47 verbose code 1
