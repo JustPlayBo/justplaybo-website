@@ -1,2 +1,3 @@
 /* /index.html 200
 
+/.well-known/*  /assets/well-known/:splat 200!
