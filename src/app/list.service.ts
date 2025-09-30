@@ -6,7 +6,7 @@ declare const Papa: any;
 
 @Injectable()
 export class ListService {
-  private listUrl = 'assets/ludoteca.csv';
+  private listUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRe2tbs2pHuZmyBFgG2bztrdGwXingue0uhh1_3SJxtrTrU_9j92U3Q6U5D6VmseREVh05pqf8JGV26/pub?gid=1287005740&single=true&output=csv';
 
   data: any[] = [];
 
