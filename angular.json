@@ -73,18 +73,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "justplaybo-website-new:build"
+            "buildTarget": "justplaybo-website-new:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "justplaybo-website-new:build:production"
+              "buildTarget": "justplaybo-website-new:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "justplaybo-website-new:build"
+            "buildTarget": "justplaybo-website-new:build"
           }
         },
         "test": {
