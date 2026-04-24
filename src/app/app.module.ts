@@ -12,12 +12,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatTableModule } from '@angular/material/table';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyTabsModule as MatTabsModule } from '@angular/material/legacy-tabs';
+import { MatLegacyTableModule as MatTableModule } from '@angular/material/legacy-table';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatCardModule } from '@angular/material/card';
+import { MatLegacyProgressBarModule as MatProgressBarModule } from '@angular/material/legacy-progress-bar';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
 import { MatSortModule } from '@angular/material/sort';
 
 import { LayoutModule } from '@angular/cdk/layout';
