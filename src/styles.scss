@@ -3,7 +3,8 @@
 @import 'https://fonts.googleapis.com/css?family=Material+Icons';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 
 $justplaybo-primary-palette: (
   50: #f3e4e4,

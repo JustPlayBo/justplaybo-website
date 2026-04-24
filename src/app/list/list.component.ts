@@ -4,10 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 
 declare const Papa: any;
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
-  providers: [ListService]
+    selector: 'app-list',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss'],
+    providers: [ListService],
+    standalone: false
 })
 export class ListComponent implements OnInit {
   list: any[];
