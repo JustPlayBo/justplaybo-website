@@ -1,47 +1,50 @@
-<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+@if (loading) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
 
-<h2>La Nostra Collezione <span *ngIf="selectedList">- Lista {{selectedList}}</span></h2>
-<div class="row no-padding div-custom-link" *ngIf="isSustainLinkVisible()">
-  <div class="col">
-    <a [routerLink]="['/support']" class="custom-link">Scopri di pi&ugrave; sulla campagna di sostegno a JustPlay</a>
+<h2>La Nostra Collezione @if (selectedList) {
+  <span>- Lista {{selectedList}}</span>
+}</h2>
+@if (isSustainLinkVisible()) {
+  <div class="row no-padding div-custom-link">
+    <div class="col">
+      <a [routerLink]="['/support']" class="custom-link">Scopri di pi&ugrave; sulla campagna di sostegno a JustPlay</a>
+    </div>
   </div>
-</div>
-<table *ngIf="list" mat-table [dataSource]="list" matSort class="mat-elevation-z8">
-
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Titolo </th>
-    <td mat-cell *matCellDef="let element"> {{element.titolo}} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="players">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Giocatori </th>
-    <td mat-cell *matCellDef="let element"> {{element.players}} </td>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="duration">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Durata </th>
-    <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
-  </ng-container>
-<!-- Symbol Column -->
-<ng-container matColumnDef="complexity">
-  <th mat-header-cell *matHeaderCellDef mat-sort-header> Complessit&agrave; </th>
-  <td mat-cell *matCellDef="let element"> {{element.complexity}} </td>
-</ng-container>
-<!-- Symbol Column -->
-<ng-container matColumnDef="bggurl">
-  <th mat-header-cell *matHeaderCellDef> Dettagli </th>
-  <td mat-cell *matCellDef="let element"> <a href="{{element.bgg}}" target="_blank">BGG</a> </td>
-</ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row [ngClass]="getClassName(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+}
+@if (list) {
+  <table mat-table [dataSource]="list" matSort class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+    The actual rendered columns are set as a property on the row definition" -->
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Titolo </th>
+      <td mat-cell *matCellDef="let element"> {{element.titolo}} </td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="players">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Giocatori </th>
+      <td mat-cell *matCellDef="let element"> {{element.players}} </td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="duration">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Durata </th>
+      <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="complexity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Complessit&agrave; </th>
+      <td mat-cell *matCellDef="let element"> {{element.complexity}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="bggurl">
+      <th mat-header-cell *matHeaderCellDef> Dettagli </th>
+      <td mat-cell *matCellDef="let element"> <a href="{{element.bgg}}" target="_blank">BGG</a> </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row [ngClass]="getClassName(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+}
 
 <!--
 <table style="width: 100%">
