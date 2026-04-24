@@ -104,15 +104,15 @@ $justplaybo-warn-palette: (
   )
 );
 
-$justplaybo-primary: mat.define-palette($justplaybo-primary-palette, 500, 100, 800);
-$justplaybo-accent: mat.define-palette($justplaybo-accent-palette, 500, 100, 800);
-$justplaybo-warn: mat.define-palette($justplaybo-warn-palette, 500, 100, 800);
+$justplaybo-primary: mat.m2-define-palette($justplaybo-primary-palette, 500, 100, 800);
+$justplaybo-accent: mat.m2-define-palette($justplaybo-accent-palette, 500, 100, 800);
+$justplaybo-warn: mat.m2-define-palette($justplaybo-warn-palette, 500, 100, 800);
 
-$justplaybo-typography: mat.define-typography-config(
+$justplaybo-typography: mat.m2-define-typography-config(
   $font-family: 'Roboto, "Helvetica Neue", sans-serif',
 );
 
-$justplaybo-theme: mat.define-light-theme((
+$justplaybo-theme: mat.m2-define-light-theme((
   color: (
     primary: $justplaybo-primary,
     accent: $justplaybo-accent,

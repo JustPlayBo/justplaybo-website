@@ -9,7 +9,7 @@ import { SustainAdComponent } from './sustain-ad/sustain-ad.component';
 import { SustainComponent } from './sustain/sustain.component';
 import { LinksComponent } from './links/links.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,36 +24,27 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { FaqComponent } from './faq/faq.component';
 import { CatanComponent } from './catan/catan.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    ListComponent,
-    SustainAdComponent,
-    SustainComponent,
-    LinksComponent,
-    FaqComponent,
-    CatanComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-
-    MatToolbarModule,
-    MatButtonModule,
-    MatTableModule,
-    MatIconModule,
-    MatProgressBarModule,
-    MatCardModule,
-    MatSortModule,
-
-    LayoutModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HomeComponent,
+        ListComponent,
+        SustainAdComponent,
+        SustainComponent,
+        LinksComponent,
+        FaqComponent,
+        CatanComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatTableModule,
+        MatIconModule,
+        MatProgressBarModule,
+        MatCardModule,
+        MatSortModule,
+        LayoutModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {
   constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
     matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg'));
