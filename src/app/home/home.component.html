@@ -57,28 +57,62 @@
 <section class="activity" aria-labelledby="activity-h">
   <header class="section-head">
     <h2 id="activity-h" class="section-title">Cosa succede in questi giorni</h2>
-    <p class="section-sub">Le ultime dalla nostra pagina Facebook — eventi, serate speciali, novità.</p>
+    <p class="section-sub">Le novità in bacheca e quello che serve sapere se è la tua prima volta.</p>
   </header>
 
-  <div class="activity-frame">
-    <iframe
-      class="activity-feed"
-      title="Bacheca Facebook di Just Play Bologna"
-      src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fjustplaybologna&tabs=timeline&width=400&height=560&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
-      width="400"
-      height="560"
-      loading="lazy"
-      style="border:none;overflow:hidden"
-      scrolling="no"
-      allow="encrypted-media"></iframe>
-  </div>
+  <div class="activity-grid">
+    <div class="activity-firsttime">
+      <h3 class="subhead">La prima volta</h3>
 
-  <p class="activity-fallback">
-    Per il calendario completo, le storie e le foto serali, seguici su
-    <a href="https://www.facebook.com/justplaybologna" target="_blank" rel="noopener">Facebook</a>,
-    <a href="https://www.instagram.com/justplaybologna/" target="_blank" rel="noopener">Instagram</a>
-    o <a href="https://t.me/justplaybologna" target="_blank" rel="noopener">Telegram</a>.
-  </p>
+      <figure class="activity-photo">
+        <img src="assets/photo_2023-04-08_12-40-47.jpg"
+             alt="Una serata in ludoteca: tavoli, giochi e persone che giocano insieme"
+             loading="lazy"
+             decoding="async">
+      </figure>
+
+      <p>
+        Per giocare con noi devi essere <strong>socio Arci</strong>.
+        La tessera costa <strong>10€</strong> (8€ se hai meno di 16 anni),
+        è valida da ottobre a settembre, e si fa direttamente in sede la
+        sera stessa.
+      </p>
+
+      <p>
+        Per il resto: non serve prenotare, non serve esperienza, non serve
+        portare niente — i giochi te li spieghiamo noi. Tutte e tutti
+        benvenuti.
+      </p>
+
+      <p class="activity-firsttime-cta">
+        <a routerLink="/faq" class="custom-link">Tutte le domande frequenti →</a>
+      </p>
+    </div>
+
+    <aside class="activity-feed-col" aria-label="Aggiornamenti recenti">
+      <h3 class="subhead">In bacheca</h3>
+
+      <div class="activity-frame">
+        <iframe
+          class="activity-feed"
+          title="Bacheca Facebook di Just Play Bologna"
+          src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fjustplaybologna&tabs=timeline&width=400&height=620&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
+          width="400"
+          height="620"
+          loading="lazy"
+          style="border:none;overflow:hidden"
+          scrolling="no"
+          allow="encrypted-media"></iframe>
+      </div>
+
+      <p class="activity-fallback">
+        Calendario completo, foto serali e annunci su
+        <a href="https://www.facebook.com/justplaybologna" target="_blank" rel="noopener">Facebook</a>,
+        <a href="https://www.instagram.com/justplaybologna/" target="_blank" rel="noopener">Instagram</a>
+        e <a href="https://t.me/justplaybologna" target="_blank" rel="noopener">Telegram</a>.
+      </p>
+    </aside>
+  </div>
 </section>
 
 <hr class="section-rule" aria-hidden="true">
@@ -111,41 +145,6 @@
       height="380"
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
-</section>
-
-<hr class="section-rule" aria-hidden="true">
-
-<section class="firsttime" aria-labelledby="firsttime-h">
-  <figure class="firsttime-photo">
-    <img src="assets/photo_2023-04-08_12-40-47.jpg"
-         alt="Una serata in ludoteca: tavoli, giochi e persone che giocano insieme"
-         loading="lazy"
-         decoding="async">
-  </figure>
-
-  <div class="firsttime-text">
-    <header class="section-head">
-      <h2 id="firsttime-h" class="section-title">La prima volta</h2>
-      <p class="section-sub">Quello che è utile sapere prima di passare.</p>
-    </header>
-
-    <p>
-      Per giocare con noi devi essere <strong>socio Arci</strong>.
-      La tessera costa <strong>10€</strong> (8€ se hai meno di 16 anni),
-      è valida da ottobre a settembre, e si fa direttamente in sede la
-      sera stessa.
-    </p>
-
-    <p>
-      Per il resto: non serve prenotare, non serve esperienza, non serve
-      portare niente — i giochi te li spieghiamo noi. Tutte e tutti
-      benvenuti.
-    </p>
-
-    <p class="firsttime-cta">
-      <a routerLink="/faq" class="custom-link">Tutte le domande frequenti →</a>
-    </p>
   </div>
 </section>
 
