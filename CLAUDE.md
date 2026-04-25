@@ -50,3 +50,14 @@ Single-module Angular SPA for the Just Play Bologna board-game association (Ital
 - `CatanComponent` is declared in the module but its route is commented out in `app-routing.module.ts` — it is intentionally dormant, not dead code.
 - Templates still use `*ngIf` / `*ngFor`. Angular 21 supports both the old structural directives and the `@if` / `@for` control-flow blocks; prefer the new syntax for new templates.
 - `src/app/app.component.html` has a known typo on the `*ngIf="!isSmallScreen"href="..."` lines (missing space between attributes) — the template renders anyway, but the `@if` migration tool cannot parse it until fixed.
+
+## Design Context
+
+The full design brief lives in `.impeccable.md`. Summary for non-design work that still needs to feel on-brand:
+
+- **Audience**: a curious newcomer in Bologna deciding whether to show up Monday at 9pm. Conversion-of-strangers, not power-user efficiency.
+- **Voice**: warm, hand-touched, neighborly — a friend telling you about their hangout, not an institution announcing services. Italian, never translated-from-American.
+- **Aesthetic**: warm community zine with an Arci-red anchor. Risograph / Casa del Popolo poster / neighborhood bulletin board, never SaaS / gamer-portal / Material 2018.
+- **Palette**: `#9b2324` (Arci red) as 10% accent, warm paper-cream and ink-brown as the rest. Pure black/white banned. No Material indigo-pink. Light AND dark, both crafted (dark = warm brown, not blue-black). All palette construction in OKLCH, neutrals tinted toward red hue.
+- **Type**: avoid every font on the impeccable reflex-rejection list (Inter, IBM Plex, Fraunces, DM, Plus Jakarta, Instrument, Space, Cormorant, Playfair, Lora, Crimson, Outfit, Newsreader, Syne). Pair a characterful display face with a humanist body face that handles dense Italian copy.
+- **No-go list**: glassmorphism, gradient text, gradient hero backgrounds, side-stripe `border-left: Npx` accents on cards/alerts, neon-on-dark gamer styling, generic Material card grids.
