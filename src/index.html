@@ -7,9 +7,25 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Theme color matches the paper background. -->
-  <meta name="theme-color" content="#f6efea">
+  <!-- Theme color: matches the paper background per scheme so iOS/Android chrome blends.
+       Updated dynamically by AppComponent.toggleTheme() to reflect the user's manual choice. -->
+  <meta name="theme-color" id="jp-theme-color-light" content="#f6efea" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" id="jp-theme-color-dark"  content="#241917" media="(prefers-color-scheme: dark)">
   <meta name="msapplication-TileColor" content="#9b2324">
+
+  <!-- Boot script: applies the saved or system-preferred theme before first paint.
+       Prevents the flash-of-incorrect-theme between HTML load and Angular bootstrap. -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('jp-theme');
+        var theme  = (stored === 'light' || stored === 'dark')
+          ? stored
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) { /* localStorage blocked: fall back to OS preference via CSS */ }
+    })();
+  </script>
 
   <!-- Favicon set (existing assets) -->
   <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">

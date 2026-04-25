@@ -93,12 +93,23 @@
   .brand-tag { display: none; }
 }
 
+// End cluster: social row + theme toggle
+.masthead-end {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  justify-self: end;
+}
+
+@media (max-width: 640px) {
+  .masthead-end { justify-self: start; flex-wrap: wrap; }
+}
+
 // Social row
 .masthead-social {
   display: flex;
   gap: 2px;
   align-items: center;
-  justify-self: end;
 
   a {
     display: inline-flex;
@@ -126,11 +137,53 @@
   .mat-icon svg { height: 20px; width: 20px; }
 }
 
-@media (max-width: 640px) {
-  .masthead-social {
-    justify-self: start;
-    flex-wrap: wrap;
+// ─── Theme toggle ───────────────────────────────────────────────────────────
+// Sun/moon swap with a small rotation so it reads as a flip, not a fade.
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-left: var(--sp-xs);
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--jp-radius-pill);
+  background: transparent;
+  color: var(--jp-ink-soft);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) var(--easing),
+    background-color var(--dur-fast) var(--easing),
+    border-color var(--dur-fast) var(--easing),
+    transform var(--dur-fast) var(--easing);
+
+  .mat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--dur-medium) var(--easing);
   }
+  .mat-icon svg { height: 20px; width: 20px; }
+
+  &:hover {
+    color: var(--jp-brand);
+    background: color-mix(in oklab, var(--jp-brand) 8%, transparent);
+    border-color: color-mix(in oklab, var(--jp-brand) 20%, transparent);
+  }
+  &:hover .mat-icon { transform: rotate(-12deg); }
+
+  &:active { transform: scale(0.96); }
+
+  &:focus-visible {
+    outline: 2px solid var(--jp-brand);
+    outline-offset: 2px;
+    color: var(--jp-brand);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle:hover .mat-icon { transform: none; }
 }
 
 // ─── Hand-drawn rule ───────────────────────────────────────────────────────

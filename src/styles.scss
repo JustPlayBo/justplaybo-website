@@ -78,9 +78,10 @@ $jp-mat-theme: mat.m2-define-light-theme((
 // NEVER pure black (#000) or pure white (#fff).
 
 :root {
-  // Light is the only theme. light-dark() values are kept structured below so a
-  // future dark mode can be re-enabled by switching to `color-scheme: light dark`.
-  color-scheme: light;
+  // Default: follow OS preference. data-theme overrides force a specific scheme.
+  // The inline boot script in index.html sets data-theme before first paint
+  // (preventing flash); the Angular AppComponent keeps it in sync after.
+  color-scheme: light dark;
 
   // Brand — the Arci red.
   --jp-brand-light: oklch(0.45 0.16  27);   // ≈ #9b2324, the soul anchor
@@ -157,6 +158,10 @@ $jp-mat-theme: mat.m2-define-light-theme((
   // Iconography (MDI sprite)
   --jp-icon-size: 22px;
 }
+
+// User-forced theme overrides (set by the inline boot script + AppComponent).
+:root[data-theme='light'] { color-scheme: light; }
+:root[data-theme='dark']  { color-scheme: dark; }
 
 // ─── Reset + base typography ────────────────────────────────────────────────
 
