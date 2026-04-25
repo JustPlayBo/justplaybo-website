@@ -40,6 +40,11 @@ speed-measure-plugin*.json
 npm-debug.log
 yarn-error.log
 testem.log
+debug.log
+eresolve-report.txt
+_logs/
+_update-notifier-last-checked
+.angulardoc.json
 /typings
 
 # System Files

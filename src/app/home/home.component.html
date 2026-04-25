@@ -1,27 +1,129 @@
-<div class="row no-padding custom-link-div sustain-link-div">
-  <div class="col">
-    <a routerLink="/sustain" class="custom-link"><b>New! Sostieni JustPlay!</b></a>
-  </div>
-</div>
+<section class="hero">
+  <p class="hero-eyebrow">Ludoteca · Casa del Popolo Bruno Tosarelli · Bologna</p>
+  <h1 class="hero-headline">
+    Una sera, un tavolo,<br>
+    un gioco — e qualcuno<br>
+    che te lo spiega.
+  </h1>
+  <p class="hero-lede">
+    Just Play Bologna è una ludoteca di quartiere alla
+    <strong>Casa del Popolo Bruno Tosarelli</strong>, in Corticella.
+    Ogni settimana, dal lunedì al sabato, apriamo i tavoli a chiunque
+    voglia giocare — soci e curiosi, esperti e chi tira un D20 per la
+    prima volta.
+  </p>
+</section>
 
-<div class="row no-padding">
-  <div class="col">
-    <iframe class="block" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fjustplaybologna&tabs=timeline&width=360px&height=475&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="360px" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-  </div>
-</div>
+<hr class="section-rule" aria-hidden="true">
 
-<div class="row no-padding">
-  <div class="col mapouter">
-    <div class="gmap_canvas">
-      <iframe width="360" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=44.546179,%2011.3559876&t=&z=18&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-    </div>
-  </div>
-</div>
+<section class="schedule" aria-labelledby="schedule-h">
+  <header class="section-head">
+    <h2 id="schedule-h" class="section-title">Quando ci troviamo</h2>
+    <p class="section-sub">I nostri appuntamenti settimanali, fissi.</p>
+  </header>
 
-<div class="row no-padding">
-  <footer class=" col">
-    <h3>Contatti</h3>
-    <p><a href="mailto:info@justplaybo.it">info&#64;justplaybo.it</a></p>
-    <p>Via Bentini 20, 40128 Bologna (BO)</p>
-  </footer>
-</div>
+  <table class="schedule-table">
+    <caption class="sr-only">Orario settimanale degli appuntamenti</caption>
+    <thead>
+      <tr>
+        <th scope="col">Giorno</th>
+        <th scope="col">Ora</th>
+        <th scope="col">Cosa</th>
+        <th scope="col" class="schedule-note-col">Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of schedule; track row.day + row.time) {
+        <tr>
+          <td class="schedule-day">{{ row.day }}</td>
+          <td class="schedule-time">{{ row.time }}</td>
+          <td class="schedule-activity">{{ row.activity }}</td>
+          <td class="schedule-note">{{ row.note }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <p class="schedule-footnote">
+    <em>Non serve prenotare</em>, ma se siete in tanti scriveteci prima
+    su <a href="https://t.me/justplaybologna" target="_blank" rel="noopener">Telegram</a>
+    o <a href="mailto:info@justplaybo.it">via mail</a> — così prepariamo
+    i giochi giusti per voi.
+  </p>
+</section>
+
+<hr class="section-rule" aria-hidden="true">
+
+<section class="where" aria-labelledby="where-h">
+  <div class="where-text">
+    <header class="section-head">
+      <h2 id="where-h" class="section-title">Come arrivare</h2>
+      <p class="section-sub">Siamo facili da raggiungere.</p>
+    </header>
+
+    <address class="where-address">
+      <strong>Via Bentini 20</strong><br>
+      40128 Bologna (BO)<br>
+      <span class="where-place">Casa del Popolo "Bruno Tosarelli" — Circolo Arci Brecht, primo piano</span>
+    </address>
+
+    <ul class="transit">
+      <li><span class="transit-mode">Bus</span> linee 27A, 97, 98 — fermata <em>Corticella</em></li>
+      <li><span class="transit-mode">Treno</span> stazione <em>Bologna Corticella</em></li>
+      <li><span class="transit-mode">Auto</span> parcheggio in via Bentini</li>
+    </ul>
+  </div>
+
+  <div class="where-map">
+    <iframe
+      title="Mappa: Just Play Bologna in via Bentini 20"
+      src="https://maps.google.com/maps?q=44.546179,%2011.3559876&t=&z=18&ie=UTF8&iwloc=&output=embed"
+      width="100%"
+      height="380"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<hr class="section-rule" aria-hidden="true">
+
+<section class="firsttime" aria-labelledby="firsttime-h">
+  <figure class="firsttime-photo">
+    <img src="assets/photo_2023-04-08_12-40-47.jpg"
+         alt="Una serata in ludoteca: tavoli, giochi e persone che giocano insieme"
+         loading="lazy"
+         decoding="async">
+  </figure>
+
+  <div class="firsttime-text">
+    <header class="section-head">
+      <h2 id="firsttime-h" class="section-title">La prima volta</h2>
+      <p class="section-sub">Quello che è utile sapere prima di passare.</p>
+    </header>
+
+    <p>
+      Per giocare con noi devi essere <strong>socio Arci</strong>.
+      La tessera costa <strong>10€</strong> (8€ se hai meno di 16 anni),
+      è valida da ottobre a settembre, e si fa direttamente in sede la
+      sera stessa.
+    </p>
+
+    <p>
+      Per il resto: non serve prenotare, non serve esperienza, non serve
+      portare niente — i giochi te li spieghiamo noi. Tutte e tutti
+      benvenuti.
+    </p>
+
+    <p class="firsttime-cta">
+      <a routerLink="/faq" class="custom-link">Tutte le domande frequenti →</a>
+    </p>
+  </div>
+</section>
+
+<footer class="contacts" aria-labelledby="contacts-h">
+  <h2 id="contacts-h" class="contacts-title">Contatti</h2>
+  <p>
+    <a href="mailto:info@justplaybo.it">info&#64;justplaybo.it</a> ·
+    Via Bentini 20, 40128 Bologna (BO)
+  </p>
+</footer>
