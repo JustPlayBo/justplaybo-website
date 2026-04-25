@@ -125,22 +125,14 @@ $justplaybo-theme: mat.m2-define-light-theme((
 
 @include mat.all-component-themes($justplaybo-theme);
 
+:root {
+  --jp-brand: #9b2324;
+}
+
 html, body { height: 100%; }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-
-  --primary-color: #9b2324;
-  --primary-lighter-color: #e1bdbd;
-  --primary-darker-color: #7f1516;
-
-  --accent-color: #c4b9b9;
-  --accent-lighter-color: #edeaea;
-  --accent-darker-color: #afa2a2;
-
-  --warn-color: #f78888;
-  --warn-lighter-color: #fddbdb;
-  --warn-darker-color: #f36b6b;
 }
 
 .mat-raised-button,
@@ -152,26 +144,9 @@ body {
   line-height: 36.4px;
 }
 
-.mat-standard-chip {
-  padding: .5em .85em;
-  min-height: 2.5em;
-}
-
 .material-icons {
   font-size: 24px;
-  font-family: 'Material Icons', 'Material Icons';
-
-  .mat-badge-content {
-    font-family: 'Roboto';
-  }
-}
-
-button.mat-menu-item {
-  line-height: 24px !important;
-}
-
-a.mat-menu-item > mat-icon {
-  margin-bottom: 14px;
+  font-family: 'Material Icons';
 }
 
 .mat-icon svg {
@@ -179,7 +154,26 @@ a.mat-menu-item > mat-icon {
   width: 24px;
 }
 
-.mat-step-icon-content .mat-icon svg {
-  height: 100%;
-  width: 100%;
+// Touch targets: bump Material's 40×40 icon buttons to the 44×44 minimum.
+.mat-mdc-icon-button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+// Single source of truth for the recurring brand-red text link
+// used across home / sustain / sustain-ad / list. Replaces four
+// duplicated `color: red` blocks in component stylesheets.
+.custom-link {
+  &, &:visited {
+    color: var(--jp-brand);
+  }
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover { text-decoration: underline; }
+  &:focus-visible {
+    outline: 2px solid var(--jp-brand);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 }

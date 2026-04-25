@@ -7,7 +7,6 @@ import { HomeComponent } from './home/home.component';
 import { ListComponent } from './list/list.component';
 import { SustainAdComponent } from './sustain-ad/sustain-ad.component';
 import { SustainComponent } from './sustain/sustain.component';
-import { LinksComponent } from './links/links.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
@@ -28,7 +27,6 @@ import { FaqComponent } from './faq/faq.component';
     ListComponent,
     SustainAdComponent,
     SustainComponent,
-    LinksComponent,
     FaqComponent
   ],
   bootstrap: [AppComponent],

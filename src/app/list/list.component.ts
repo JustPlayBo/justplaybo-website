@@ -2,87 +2,65 @@ import { Component, OnInit } from '@angular/core';
 import { ListService } from '../list.service';
 import { ActivatedRoute } from '@angular/router';
 
-declare const Papa: any;
 @Component({
-    selector: 'app-list',
-    templateUrl: './list.component.html',
-    styleUrls: ['./list.component.scss'],
-    providers: [ListService],
-    standalone: false
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss'],
+  providers: [ListService],
+  standalone: false,
 })
 export class ListComponent implements OnInit {
-  list: any[];
-  selectedList: string;
-  title: string;
-
+  list: any[] = [];
+  selectedList: string | null = null;
+  title = 'La Nostra Collezione';
   loading = false;
 
   displayedColumns = ['name', 'players', 'duration', 'complexity', 'bggurl'];
 
   constructor(
     private listService: ListService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
-    this.listService.loaded.subscribe(data => this.updateList());
-  }
-
-  isRowVisible(game): boolean {
-    if (this.selectedList) {
-      if (game && game.list) {
-        if (game.list.$t !== this.selectedList) {
-          return false;
-        }
-      }
-    }
-    return true;
-  }
-
-  isSustainLinkVisible(): boolean {
-    if ('A' === this.selectedList || 'B' === this.selectedList) {
-      return true;
-    }
-    return false;
-  }
-
-  getClassName(game): string {
-    if (game && game.complexity) {
-      switch (game.complexity.$t) {
-        case 'Semplice':
-          return 'green';
-        case 'Media':
-          return 'yellow';
-        case 'Elevata':
-          return 'red';
-        default:
-          return 'gray';
-      }
-    }
+    this.listService.loaded.subscribe(() => this.updateList());
   }
 
   ngOnInit() {
     this.loading = true;
     this.selectedList = this.route.snapshot.paramMap.get('list');
+    this.title = this.computeTitle(this.selectedList);
   }
 
-  updateList() {
+  isRowVisible(game: any): boolean {
+    if (!this.selectedList) return true;
+    if (!game?.list) return true;
+    return game.list.$t === this.selectedList;
+  }
+
+  isSustainLinkVisible(): boolean {
+    return this.selectedList === 'A' || this.selectedList === 'B';
+  }
+
+  getClassName(game: any): string {
+    switch (game?.complexity?.$t) {
+      case 'Semplice': return 'green';
+      case 'Media': return 'yellow';
+      case 'Elevata': return 'red';
+      default: return 'gray';
+    }
+  }
+
+  private computeTitle(selectedList: string | null): string {
+    switch (selectedList) {
+      case 'A': return 'Lista A';
+      case 'B': return 'Lista B';
+      default: return 'La Nostra Collezione';
+    }
+  }
+
+  private updateList() {
     this.listService.getList().subscribe(data => {
       this.loading = false;
-      if (data.length > 0) {
-        this.list = data;
-      } else {
-        this.list = [];
-      }
-
-      switch (this.selectedList) {
-        case 'A':
-          this.title = 'Lista A';
-          break;
-        case 'B':
-          this.title = 'Lista B';
-          break;
-        default:
-          this.title = 'La Nostra Collezione';
-      }
+      this.list = data?.length ? data : [];
     });
   }
 }
