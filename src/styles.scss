@@ -78,13 +78,15 @@ $jp-mat-theme: mat.m2-define-light-theme((
 // NEVER pure black (#000) or pure white (#fff).
 
 :root {
-  color-scheme: light dark;
+  // Light is the only theme. light-dark() values are kept structured below so a
+  // future dark mode can be re-enabled by switching to `color-scheme: light dark`.
+  color-scheme: light;
 
-  // Brand — the Arci red. Same hue across themes; lightness shifts for dark.
+  // Brand — the Arci red.
   --jp-brand-light: oklch(0.45 0.16  27);   // ≈ #9b2324, the soul anchor
-  --jp-brand-dark:  oklch(0.62 0.165 27);   // brighter on felt for AA contrast
+  --jp-brand-dark:  oklch(0.62 0.165 27);   // reserved for a future dark variant
   --jp-brand:       light-dark(var(--jp-brand-light), var(--jp-brand-dark));
-  --jp-brand-ink:   light-dark(#9b2324, #d24c4d);  // legacy alias kept for components
+  --jp-brand-ink:   light-dark(#9b2324, #d24c4d);
 
   // Surfaces
   --jp-paper:       light-dark(oklch(0.97 0.006 27), oklch(0.18 0.012 27));

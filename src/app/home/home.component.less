@@ -151,6 +151,48 @@
   }
 }
 
+// ─── Activity (Facebook page feed) ──────────────────────────────────────────
+// Centered, framed with a paper-deep border so the embed reads as a clipping
+// from a print piece rather than a raw widget. The iframe sizes itself to the
+// FB plugin's native 400×560.
+.activity {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.activity-frame {
+  background: var(--jp-paper-deep);
+  padding: var(--sp-sm);
+  border-radius: var(--jp-radius-md);
+  border: 1px solid var(--jp-rule);
+  align-self: flex-start;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.activity-feed {
+  display: block;
+  width: 400px;
+  max-width: 100%;
+  height: 560px;
+  border-radius: var(--jp-radius-sm);
+  background: #fff;
+}
+
+.activity-fallback {
+  margin-top: var(--sp-lg);
+  font-family: var(--jp-serif);
+  font-size: var(--fs-base);
+  color: var(--jp-ink-soft);
+  max-width: var(--measure);
+}
+
+@media (min-width: 760px) {
+  .activity-frame { align-self: center; }
+  .activity-fallback { align-self: center; text-align: center; }
+}
+
 // ─── Where (asymmetric two-column: text narrow, map wide) ───────────────────
 .where {
   display: grid;
