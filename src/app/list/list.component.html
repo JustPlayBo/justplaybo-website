@@ -45,19 +45,3 @@
     <tr mat-row [ngClass]="getClassName(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 }
-
-<!--
-<table style="width: 100%">
-
-  <ng-container *ngFor="let game of list">
-    <tr *ngIf="isRowVisible(game)">
-      <td>{{game.name}}</td>
-      <td>{{game.players}}</td>
-      <td>{{game.duration}}</td>
-      <td [ngClass]="getClassName(game)">{{game.complexity}}</td>
-      <td><a href="{{game.bggurl}}" target="_blank">Visit BGG</a></td>
-    </tr>
-  </ng-container>
-</table>
-
--->

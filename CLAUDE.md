@@ -47,9 +47,7 @@ Single-module Angular SPA for the Just Play Bologna board-game association (Ital
 - Component selector prefix: `app` (enforced via `angular.json`).
 - Component scaffolding defaults to SCSS (`angular.json` schematics), but existing components mix `.less` and `.scss` — match the surrounding component when editing.
 - Route paths in Italian content reflect user-facing terminology (`support`/`supportAd`/`faq`); do not translate.
-- `CatanComponent` is declared in the module but its route is commented out in `app-routing.module.ts` — it is intentionally dormant, not dead code.
-- Templates still use `*ngIf` / `*ngFor`. Angular 21 supports both the old structural directives and the `@if` / `@for` control-flow blocks; prefer the new syntax for new templates.
-- `src/app/app.component.html` has a known typo on the `*ngIf="!isSmallScreen"href="..."` lines (missing space between attributes) — the template renders anyway, but the `@if` migration tool cannot parse it until fixed.
+- Templates use the v17+ `@if` / `@for` control-flow blocks. The list table still relies on `*matRowDef` / `*matHeaderRowDef` because Material's table uses structural-directive syntax that has no `@`-block equivalent — that's expected, not legacy.
 
 ## Design Context
 

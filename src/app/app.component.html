@@ -1,30 +1,41 @@
 <mat-toolbar color="primary" class="mat-elevation-z6">
   <mat-toolbar-row>
-    <img *ngIf="!isSmallScreen" height="64" src="assets/jp_icon.png" routerLink="/home">
-    <img *ngIf="!isSmallScreen" height="64" src="assets/jp_name.png" routerLink="/home">
-    <img *ngIf="isSmallScreen" height="56" src="assets/jp_icon.png" routerLink="/home">
+    @if (!isSmallScreen) {
+      <img height="64" src="assets/jp_icon.png" routerLink="/home">
+      <img height="64" src="assets/jp_name.png" routerLink="/home">
+    } @else {
+      <img height="56" src="assets/jp_icon.png" routerLink="/home">
+    }
     <span class="spacer"></span>
     <a href="https://www.facebook.com/justplaybologna" target="_blank" mat-icon-button><mat-icon svgIcon="facebook"></mat-icon></a>
     <a href="https://www.instagram.com/justplaybologna/" target="_blank" mat-icon-button><mat-icon svgIcon="instagram"></mat-icon></a>
     <a href="https://www.youtube.com/channel/UCNa0SvpXTR_AJ7Tr32N53TQ" target="_blank" mat-icon-button><mat-icon svgIcon="youtube"></mat-icon></a>
     <a href="https://t.me/justplaybologna" target="_blank" mat-icon-button><mat-icon svgIcon="telegram"></mat-icon></a>
-    <a *ngIf="!isSmallScreen"href="https://github.com/JustPlayBo" target="_blank" mat-icon-button><mat-icon svgIcon="github"></mat-icon></a>
-    <a *ngIf="!isSmallScreen"href="https://steamcommunity.com/groups/justplaybo" target="_blank" mat-icon-button><mat-icon svgIcon="steam"></mat-icon></a>
-    <a *ngIf="!isSmallScreen"href="https://discord.gg/89R5hpM" target="_blank" mat-icon-button><mat-icon svgIcon="discord"></mat-icon></a>
+    @if (!isSmallScreen) {
+      <a href="https://github.com/JustPlayBo" target="_blank" mat-icon-button><mat-icon svgIcon="github"></mat-icon></a>
+      <a href="https://steamcommunity.com/groups/justplaybo" target="_blank" mat-icon-button><mat-icon svgIcon="steam"></mat-icon></a>
+      <a href="https://discord.gg/89R5hpM" target="_blank" mat-icon-button><mat-icon svgIcon="discord"></mat-icon></a>
+    }
   </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-toolbar color="accent" class="mat-elevation-z1">
-
   <mat-toolbar-row>
     <button mat-button mat-raised-button color="primary" [routerLink]="['/support']"><mat-icon svgIcon="circle-multiple"></mat-icon> Sostienici!</button>
-    <span class="spacer" *ngIf="!isSmallScreen"></span>
+    @if (!isSmallScreen) {
+      <span class="spacer"></span>
+    }
     <button mat-button [routerLink]="['/list']"><mat-icon svgIcon="format-list-text"></mat-icon> I nostri giochi</button>
-    <a *ngIf="!isSmallScreen" target="_blank" href="https://sherlock.justplaybo.it" mat-button><mat-icon svgIcon="dice-multiple"></mat-icon> Sherlock Holmes</a>
-    <!--<a *ngIf="!isSmallScreen" target="_blank" href="https://murder.justplaybo.it" mat-button><mat-icon svgIcon="dice-multiple"></mat-icon> Whitehall/Whitechapel</a>-->
+    @if (!isSmallScreen) {
+      <a target="_blank" href="https://sherlock.justplaybo.it" mat-button><mat-icon svgIcon="dice-multiple"></mat-icon> Sherlock Holmes</a>
+    }
     <a [routerLink]="['/faq']" mat-button><mat-icon svgIcon="information"></mat-icon> FAQ</a>
-    <a mat-icon-button *ngIf="isSmallScreen"><mat-icon>menu</mat-icon></a>
-    <span class="spacer" *ngIf="!isSmallScreen"></span>
-    </mat-toolbar-row>
-</mat-toolbar>  
+    @if (isSmallScreen) {
+      <a mat-icon-button><mat-icon>menu</mat-icon></a>
+    }
+    @if (!isSmallScreen) {
+      <span class="spacer"></span>
+    }
+  </mat-toolbar-row>
+</mat-toolbar>
 <router-outlet></router-outlet>
