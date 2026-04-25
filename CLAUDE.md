@@ -13,10 +13,10 @@ No lint target exists. There are no e2e tests (Protractor was dropped during the
 This is **Angular 21** on TypeScript 5.9 and zone.js 0.15. Node 20.19+ or 22.12+ is required — the host OS may still have an older Node; run everything through Docker:
 
 ```bash
-docker run --rm -v $(pwd):/app -w /app node:22-alpine sh -c "npm install --legacy-peer-deps && node_modules/.bin/ng build --configuration=production"
+docker run --rm -v $(pwd):/app -w /app node:22-alpine sh -c "npm install && node_modules/.bin/ng build --configuration=production"
 ```
 
-Use `--legacy-peer-deps` on install — `@mdi/angular-material@5` pins an ancient peer and is unused at runtime (icons are served from `assets/mdi.svg`), but it stays in deps and breaks strict peer resolution.
+Material Design Icons are served from `assets/mdi.svg` (registered via `MatIconRegistry.addSvgIconSet` in `AppModule`); the `@mdi/angular-material` npm package is not used.
 
 Deployment is a two-step container build: `ng build --configuration=production` produces `dist/`, then the `Dockerfile` (nginx:alpine) copies it to `/usr/share/nginx/html`. `nginx.conf` SPA-falls back to `index.html`. `src/_redirects` serves the same purpose on Netlify-style hosts and also routes `/.well-known/*` to `assets/well-known/`.
 
@@ -36,7 +36,7 @@ Single-module Angular SPA for the Just Play Bologna board-game association (Ital
 
 **Angular Material theming** (`src/styles.scss`): uses the modern `@use '@angular/material' as mat;` API with custom M2 palettes (primary `#9b2324`, accent `#c4b9b9`, warn `#f78888`). `mat.m2-*` mixins are still the M2-compatibility path in v21 — if you move to M3, rewrite the whole file. The MDC migration at v17 already removed the `MatLegacy*` imports; components use the current `@angular/material/button`, `/table`, `/card`, etc.
 
-**Icons**: `AppModule`'s constructor registers the Material Design Icons sprite from `assets/mdi.svg` via `MatIconRegistry.addSvgIconSet` — icons are referenced by name, not imported individually. The `@mdi/angular-material` npm dependency is unused.
+**Icons**: `AppModule`'s constructor registers the Material Design Icons sprite from `assets/mdi.svg` via `MatIconRegistry.addSvgIconSet` — icons are referenced by name, not imported individually.
 
 **Responsive layout**: `AppComponent` uses `BreakpointObserver` against `(max-width: 599px)` and exposes `isSmallScreen` to the template. Components use a mix of `.scss` and `.less` stylesheets; both are allowed and already wired through Angular CLI's defaults.
 
