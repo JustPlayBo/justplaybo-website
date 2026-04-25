@@ -1,11 +1,295 @@
-.custom-link-div {
-  margin-bottom: 10px;
+// ─── Hero ───────────────────────────────────────────────────────────────────
+.hero {
+  padding-block: clamp(var(--sp-lg), 4vw, var(--sp-3xl)) var(--sp-2xl);
+  max-width: 56rem;
+}
 
-  &.sustain-link-div {
-    margin-top: 10px;
+.hero-eyebrow {
+  font-family: var(--jp-sans);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--jp-ink-soft);
+  margin: 0 0 var(--sp-lg) 0;
+}
+
+.hero-headline {
+  font-family: var(--jp-display);
+  font-size: var(--fs-display);
+  line-height: 1.02;
+  letter-spacing: -0.012em;
+  color: var(--jp-ink);
+  margin: 0 0 var(--sp-xl) 0;
+  text-wrap: balance;
+}
+
+.hero-lede {
+  font-family: var(--jp-serif);
+  font-size: clamp(1.15rem, 0.9rem + 0.8vw, 1.4rem);
+  line-height: 1.55;
+  color: var(--jp-ink);
+  margin: 0;
+  max-width: 38em;
+
+  strong {
+    font-weight: 700;
+    color: var(--jp-brand);
+  }
+}
+
+// ─── Section primitives ─────────────────────────────────────────────────────
+.section-rule {
+  border: 0;
+  height: 1px;
+  background: var(--jp-rule);
+  margin: clamp(var(--sp-2xl), 5vw, var(--sp-3xl)) 0;
+}
+
+.section-head {
+  margin-bottom: var(--sp-xl);
+}
+
+.section-title {
+  font-family: var(--jp-serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: var(--fs-2xl);
+  line-height: 1.1;
+  margin: 0;
+  color: var(--jp-ink);
+}
+
+.section-sub {
+  font-family: var(--jp-sans);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--jp-ink-soft);
+  margin: var(--sp-xs) 0 0 0;
+  text-transform: lowercase;
+}
+
+// ─── Schedule (newspaper TV-listings table) ─────────────────────────────────
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--jp-serif);
+  font-feature-settings: 'tnum' 1, 'lnum' 1;     // tabular lining figures for time
+
+  thead th {
+    text-align: left;
+    font-family: var(--jp-sans);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--jp-ink-soft);
+    padding: var(--sp-sm) var(--sp-md);
+    border-bottom: 1px solid var(--jp-rule-strong);
   }
 
-  & .custom-link {
-    font-size: 115%;
+  tbody td {
+    padding: var(--sp-md);
+    border-bottom: 1px solid var(--jp-rule);
+    vertical-align: baseline;
+    font-size: var(--fs-md);
   }
+
+  tbody tr:last-child td { border-bottom: 0; }
+
+  tbody tr {
+    transition: background-color var(--dur-fast) var(--easing);
+  }
+  tbody tr:hover {
+    background: color-mix(in oklab, var(--jp-brand) 5%, transparent);
+  }
+
+  .schedule-day {
+    font-weight: 600;
+    color: var(--jp-ink);
+    width: 12rem;
+  }
+
+  .schedule-time {
+    color: var(--jp-brand);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums lining-nums;
+    width: 5rem;
+  }
+
+  .schedule-activity {
+    color: var(--jp-ink);
+  }
+
+  .schedule-note {
+    font-style: italic;
+    color: var(--jp-ink-soft);
+    text-align: right;
+  }
+}
+
+@media (max-width: 600px) {
+  .schedule-table {
+    .schedule-note-col, .schedule-note { display: none; }
+    .schedule-day { width: auto; }
+    thead th, tbody td { padding: var(--sp-sm); }
+  }
+}
+
+.schedule-footnote {
+  margin-top: var(--sp-xl);
+  font-family: var(--jp-serif);
+  font-size: var(--fs-base);
+  color: var(--jp-ink-soft);
+  max-width: var(--measure);
+
+  em {
+    color: var(--jp-ink);
+    font-style: italic;
+    font-weight: 600;
+  }
+}
+
+// ─── Where (asymmetric two-column: text narrow, map wide) ───────────────────
+.where {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--sp-2xl);
+  align-items: start;
+}
+
+@media (max-width: 760px) {
+  .where { grid-template-columns: 1fr; gap: var(--sp-xl); }
+}
+
+.where-address {
+  font-style: normal;
+  font-family: var(--jp-serif);
+  font-size: var(--fs-md);
+  line-height: 1.5;
+  margin-bottom: var(--sp-lg);
+
+  strong { font-weight: 700; }
+  .where-place {
+    display: inline-block;
+    margin-top: var(--sp-2xs);
+    color: var(--jp-ink-soft);
+    font-size: var(--fs-sm);
+    line-height: 1.5;
+  }
+}
+
+.transit {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+  font-family: var(--jp-serif);
+  font-size: var(--fs-base);
+
+  li {
+    color: var(--jp-ink);
+  }
+
+  em { font-style: italic; color: var(--jp-brand); font-weight: 600; }
+}
+
+.transit-mode {
+  display: inline-block;
+  min-width: 4rem;
+  font-family: var(--jp-sans);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--jp-ink-soft);
+  margin-right: var(--sp-sm);
+}
+
+.where-map {
+  iframe {
+    width: 100%;
+    border-radius: var(--jp-radius-md);
+    border: 1px solid var(--jp-rule);
+    background: var(--jp-paper-deep);
+    aspect-ratio: 4 / 3;
+    height: auto;
+  }
+}
+
+// ─── First-time (asymmetric: photo wide, text narrow) ───────────────────────
+.firsttime {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+  gap: var(--sp-2xl);
+  align-items: start;
+}
+
+@media (max-width: 760px) {
+  .firsttime { grid-template-columns: 1fr; gap: var(--sp-xl); }
+  .firsttime-photo { order: 2; }
+  .firsttime-text  { order: 1; }
+}
+
+.firsttime-photo {
+  margin: 0;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--jp-radius-md);
+    display: block;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: var(--jp-paper-deeper);
+  }
+}
+
+.firsttime-text {
+  font-family: var(--jp-serif);
+  font-size: var(--fs-md);
+  line-height: 1.65;
+
+  p { max-width: 38em; }
+
+  strong {
+    font-weight: 700;
+    color: var(--jp-brand);
+  }
+}
+
+.firsttime-cta {
+  margin-top: var(--sp-lg);
+  font-size: var(--fs-md);
+  font-family: var(--jp-sans);
+}
+
+// ─── Contacts ───────────────────────────────────────────────────────────────
+.contacts {
+  margin-top: clamp(var(--sp-2xl), 5vw, var(--sp-3xl));
+  padding-block: var(--sp-xl);
+  border-top: 1px solid var(--jp-rule);
+  text-align: left;
+
+  .contacts-title {
+    font-family: var(--jp-sans);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--jp-ink-soft);
+    margin: 0 0 var(--sp-sm) 0;
+  }
+
+  p {
+    font-family: var(--jp-serif);
+    font-size: var(--fs-base);
+    color: var(--jp-ink);
+    margin: 0;
+  }
+
+  a { font-weight: 600; }
 }
