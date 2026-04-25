@@ -1,7 +1,153 @@
-table {
+// ─── Page header ───────────────────────────────────────────────────────────
+.list-head {
+  margin-bottom: var(--sp-lg);
+}
+
+.list-title {
+  font-family: var(--jp-display);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 1.4rem + 3vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  margin: 0;
+  color: var(--jp-ink);
+}
+
+.list-sub {
+  font-family: var(--jp-sans);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--jp-ink-soft);
+  margin: var(--sp-xs) 0 0 0;
+  text-transform: lowercase;
+
+  em {
+    font-style: italic;
+    color: var(--jp-ink);
+    font-weight: 600;
+  }
+}
+
+.sustain-callout {
+  margin: var(--sp-md) 0 var(--sp-lg) 0;
+  font-family: var(--jp-sans);
+  font-size: var(--fs-base);
+}
+
+// ─── Search ────────────────────────────────────────────────────────────────
+.list-search {
+  margin-bottom: var(--sp-xl);
+}
+
+.list-search-field {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  background: var(--jp-paper-deep);
+  border: 1px solid var(--jp-rule);
+  border-radius: var(--jp-radius-pill);
+  padding: var(--sp-xs) var(--sp-md);
+  max-width: 28rem;
+  transition:
+    border-color var(--dur-fast) var(--easing),
+    background-color var(--dur-fast) var(--easing),
+    box-shadow var(--dur-fast) var(--easing);
+
+  &:focus-within {
+    border-color: var(--jp-brand);
+    background: var(--jp-paper);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--jp-brand) 15%, transparent);
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    color: var(--jp-ink);
+    font-family: var(--jp-serif);
+    font-size: var(--fs-base);
+    line-height: 1.5;
+    padding: var(--sp-xs) 0;
+    outline: 0;
+
+    &::placeholder {
+      color: var(--jp-ink-faint);
+      font-style: italic;
+    }
+
+    // Hide default WebKit search ornaments — we provide our own clear button.
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      display: none;
+    }
+  }
+}
+
+.list-search-icon {
+  flex: 0 0 auto;
+  color: var(--jp-ink-soft);
+}
+
+.list-search-clear {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  color: var(--jp-ink-soft);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: var(--jp-radius-pill);
+  transition:
+    background-color var(--dur-fast) var(--easing),
+    color var(--dur-fast) var(--easing);
+
+  &:hover {
+    background: color-mix(in oklab, var(--jp-brand) 12%, transparent);
+    color: var(--jp-brand);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--jp-brand);
+    outline-offset: 2px;
+  }
+}
+
+// ─── Empty state ───────────────────────────────────────────────────────────
+.list-empty {
+  font-family: var(--jp-serif);
+  font-size: var(--fs-md);
+  color: var(--jp-ink-soft);
+  padding: var(--sp-xl) 0;
+
+  em { color: var(--jp-ink); font-weight: 600; font-style: italic; }
+}
+
+.list-empty-clear {
+  margin-left: var(--sp-sm);
+  background: transparent;
+  border: 0;
+  color: var(--jp-brand);
+  font-family: var(--jp-sans);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  padding: 0;
+
+  &:hover { color: color-mix(in oklab, var(--jp-brand) 80%, black); }
+}
+
+// ─── Games table ───────────────────────────────────────────────────────────
+.games-table {
   width: 100%;
-  margin-top: 10px;
-  margin-bottom: 4px;
+  margin-top: var(--sp-md);
+  background: transparent;
 
   td {
     text-align: left;
@@ -10,21 +156,19 @@ table {
 
 .mat-row,
 .mat-header-row {
-  height: 26px;
+  height: 2.5rem;
 }
 
-// Complexity background tints: green = facile, yellow = medio,
-// red = elevato, gray = unspecified. Names are CSS classes,
-// not semantic colors.
-.green  { background-color: rgb(182, 202, 142); }
-.yellow { background-color: rgb(255, 255, 174); }
-.red    { background-color: rgb(255, 184, 184); }
-.gray   { background-color: rgb(199, 199, 199); }
+// Complexity background tints. Class names are CSS-class semantics, not color.
+.green  { background-color: color-mix(in oklab, oklch(0.85 0.10 130) 30%, var(--jp-paper)); }
+.yellow { background-color: color-mix(in oklab, oklch(0.92 0.12  90) 35%, var(--jp-paper)); }
+.red    { background-color: color-mix(in oklab, var(--jp-brand)      14%, var(--jp-paper)); }
+.gray   { background-color: var(--jp-paper-deep); }
 
 th.mat-header-cell:first-of-type,
 td.mat-cell:first-of-type,
-td.mat-footer-cell:first-of-type { padding-left: 6px; }
+td.mat-footer-cell:first-of-type { padding-left: var(--sp-sm); }
 
 th.mat-header-cell:last-of-type,
 td.mat-cell:last-of-type,
-td.mat-footer-cell:last-of-type { padding-right: 6px; }
+td.mat-footer-cell:last-of-type { padding-right: var(--sp-sm); }

@@ -2,18 +2,48 @@
   <mat-progress-bar mode="indeterminate" aria-label="Caricamento collezione in corso"></mat-progress-bar>
 }
 
-<h2>{{ title }}</h2>
+<header class="list-head">
+  <h2 class="list-title">{{ title }}</h2>
+  <p class="list-sub">
+    {{ filteredList.length }} {{ filteredList.length === 1 ? 'gioco' : 'giochi' }}
+    @if (searchTerm) { · risultati per <em>“{{ searchTerm }}”</em> }
+  </p>
+</header>
 
 @if (isSustainLinkVisible()) {
-  <div class="row no-padding div-custom-link">
-    <div class="col">
-      <a [routerLink]="['/support']" class="custom-link">Scopri di pi&ugrave; sulla campagna di sostegno a JustPlay</a>
-    </div>
-  </div>
+  <p class="sustain-callout">
+    <a [routerLink]="['/support']" class="custom-link">Scopri di più sulla campagna di sostegno a JustPlay →</a>
+  </p>
 }
 
-@if (list) {
-  <table mat-table [dataSource]="list" matSort class="mat-elevation-z8">
+<div class="list-search">
+  <label class="list-search-field">
+    <span class="sr-only">Cerca un gioco</span>
+    <svg class="list-search-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <line x1="15" y1="15" x2="20" y2="20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <input
+      type="search"
+      placeholder="Cerca per titolo, complessità, durata…"
+      autocomplete="off"
+      [value]="searchTerm"
+      (input)="onSearchInput($any($event.target).value)">
+    @if (searchTerm) {
+      <button type="button" class="list-search-clear" (click)="clearSearch()" aria-label="Cancella la ricerca">×</button>
+    }
+  </label>
+</div>
+
+@if (list.length && !filteredList.length) {
+  <p class="list-empty">
+    Nessun gioco trovato per <em>“{{ searchTerm }}”</em>.
+    <button type="button" class="list-empty-clear" (click)="clearSearch()">Cancella ricerca</button>
+  </p>
+}
+
+@if (filteredList.length) {
+  <table mat-table [dataSource]="filteredList" matSort class="games-table">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Titolo</th>
       <td mat-cell *matCellDef="let element">{{ element.titolo }}</td>
@@ -37,7 +67,7 @@
     <ng-container matColumnDef="bggurl">
       <th mat-header-cell *matHeaderCellDef>Dettagli</th>
       <td mat-cell *matCellDef="let element">
-        <a href="{{ element.bgg }}" target="_blank" rel="noopener" aria-label="Apri scheda BoardGameGeek di {{ element.titolo }}">BGG</a>
+        <a href="{{ element.bgg }}" target="_blank" rel="noopener" aria-label="Apri scheda BoardGameGeek di {{ element.titolo }}">BGG ↗</a>
       </td>
     </ng-container>
 

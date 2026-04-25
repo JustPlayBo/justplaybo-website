@@ -11,9 +11,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ListComponent implements OnInit {
   list: any[] = [];
+  filteredList: any[] = [];
   selectedList: string | null = null;
   title = 'La Nostra Collezione';
   loading = false;
+  searchTerm = '';
 
   displayedColumns = ['name', 'players', 'duration', 'complexity', 'bggurl'];
 
@@ -49,6 +51,30 @@ export class ListComponent implements OnInit {
     }
   }
 
+  onSearchInput(term: string) {
+    this.searchTerm = term;
+    this.applyFilter();
+  }
+
+  clearSearch() {
+    this.searchTerm = '';
+    this.applyFilter();
+  }
+
+  private applyFilter() {
+    const q = this.searchTerm.trim().toLowerCase();
+    if (!q) {
+      this.filteredList = this.list;
+      return;
+    }
+    this.filteredList = this.list.filter(g => {
+      const fields = [g?.titolo, g?.players, g?.duration, g?.complexity];
+      return fields.some(v =>
+        v != null && String(v).toLowerCase().includes(q),
+      );
+    });
+  }
+
   private computeTitle(selectedList: string | null): string {
     switch (selectedList) {
       case 'A': return 'Lista A';
@@ -61,6 +87,7 @@ export class ListComponent implements OnInit {
     this.listService.getList().subscribe(data => {
       this.loading = false;
       this.list = data?.length ? data : [];
+      this.applyFilter();
     });
   }
 }
