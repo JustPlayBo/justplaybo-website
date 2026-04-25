@@ -1,11 +1,18 @@
 <!doctype html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="utf-8">
-  <title>Just Play Bologna</title>
+  <title>Just Play Bologna · Ludoteca alla Casa del Popolo</title>
+  <meta name="description" content="Just Play Bologna — associazione di promozione sociale Arci. Giochi da tavolo, di ruolo, scacchi e subbuteo in Ludoteca, ogni settimana in via Bentini 20 a Bologna.">
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
+  <!-- Theme color matches the paper background per scheme so iOS/Android chrome blends. -->
+  <meta name="theme-color" content="#f6efea" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#241917" media="(prefers-color-scheme: dark)">
+  <meta name="msapplication-TileColor" content="#9b2324">
+
+  <!-- Favicon set (existing assets) -->
   <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
@@ -20,47 +27,25 @@
   <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
   <link rel="manifest" href="assets/favicon/manifest.json">
-  <meta name="msapplication-TileColor" content="#9b2324">
-  <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
-  <meta name="theme-color" content="#9b2324">
 
+  <!-- Fonts: Caprasimo (display), Alegreya (serif body), Alegreya Sans (UI). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- PapaParse for ListService — used to fetch the games CSV from the
+       published Google Sheet. Loaded globally and referenced via `declare const Papa`. -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js" integrity="sha512-dfX5uYVXzyU8+KHqj8bjo7UkOdg18PaOtpa48djpNbZHwExddghZ+ZmzWT06R5v6NSk3ZUfsH6FNEDepLx9hPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129007891-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'UA-129007891-1');
   </script>
-
-  <style>
-    body {
-      text-align: center;
-      display: block;
-      margin: 0;
-    }
-
-    .row.no-padding div.col {
-      padding-left: 0;
-      padding-right: 0;
-    }
-  </style>
-
-  <meta charset="utf-8">
-  <base href="/">
-
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body class="mat-typography">
+<body>
   <app-root></app-root>
 </body>
-
 </html>

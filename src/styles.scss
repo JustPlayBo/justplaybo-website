@@ -1,179 +1,324 @@
 @use '@angular/material' as mat;
 
-@import 'https://fonts.googleapis.com/css?family=Material+Icons';
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+// ─── Fonts ──────────────────────────────────────────────────────────────────
+// Caprasimo (display, hero / page titles): chunky warm display, evokes a
+//   1970s Italian shop sign. Used sparingly.
+// Alegreya (body serif): humanist serif by Juan Pablo del Peral, built for
+//   Spanish/Italian long copy. Carries the dense FAQ pages.
+// Alegreya Sans (UI / nav / buttons): same family for cohesion.
 
-@include mat.elevation-classes();
-@include mat.app-background();
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Caprasimo&display=swap');
+
+@include mat.core();
+
+// ─── Material M2 theme (kept for inner pages still using mat-* components) ──
+// The brand red drives the M2 palette. Inner page components (mat-table,
+// mat-progress-bar, mat-button) inherit from this. The custom shell below
+// owns the *visual* identity; this just keeps Material's own components
+// from looking out-of-place while pages get crafted one by one.
 
 $justplaybo-primary-palette: (
-  50: #f3e4e4,
-  100: #e1bdbd,
-  200: #cd9191,
-  300: #b96464,
-  400: #aa4343,
-  500: #9b2324,
-  600: #931f20,
-  700: #891a1b,
-  800: #7f1516,
-  900: #6d0c0d,
-  A100: #ffb0b0,
-  A200: #ff7d7d,
-  A400: #ff4a4b,
-  A700: #ff3031,
+  50: #f3e4e4, 100: #e1bdbd, 200: #cd9191, 300: #b96464, 400: #aa4343,
+  500: #9b2324, 600: #931f20, 700: #891a1b, 800: #7f1516, 900: #6d0c0d,
+  A100: #ffb0b0, A200: #ff7d7d, A400: #ff4a4b, A700: #ff3031,
   contrast: (
-    50: rgba(black, 0.87),
-    100: rgba(black, 0.87),
-    200: rgba(black, 0.87),
-    300: white,
-    400: white,
-    500: white,
-    600: white,
-    700: white,
-    800: white,
-    900: white,
-    A100: rgba(black, 0.87),
-    A200: white,
-    A400: white,
-    A700: white,
+    50: rgba(black, 0.87), 100: rgba(black, 0.87), 200: rgba(black, 0.87),
+    300: white, 400: white, 500: white, 600: white, 700: white,
+    800: white, 900: white,
+    A100: rgba(black, 0.87), A200: white, A400: white, A700: white,
   )
 );
-
 $justplaybo-accent-palette: (
-  50: #f8f6f6,
-  100: #edeaea,
-  200: #e2dddd,
-  300: #d6cfcf,
-  400: #cdc4c4,
-  500: #c4b9b9,
-  600: #beb2b2,
-  700: #b6aaaa,
-  800: #afa2a2,
-  900: #a29393,
-  A100: #ffffff,
-  A200: #fff5f5,
-  A400: #ffc2c2,
-  A700: #ffa8a9,
+  50: #f8f6f6, 100: #edeaea, 200: #e2dddd, 300: #d6cfcf, 400: #cdc4c4,
+  500: #c4b9b9, 600: #beb2b2, 700: #b6aaaa, 800: #afa2a2, 900: #a29393,
+  A100: #ffffff, A200: #fff5f5, A400: #ffc2c2, A700: #ffa8a9,
   contrast: (
-    50: rgba(black, 0.87),
-    100: rgba(black, 0.87),
-    200: rgba(black, 0.87),
-    300: rgba(black, 0.87),
-    400: rgba(black, 0.87),
-    500: rgba(black, 0.87),
-    600: rgba(black, 0.87),
-    700: rgba(black, 0.87),
-    800: rgba(black, 0.87),
+    50:  rgba(black, 0.87), 100: rgba(black, 0.87), 200: rgba(black, 0.87),
+    300: rgba(black, 0.87), 400: rgba(black, 0.87), 500: rgba(black, 0.87),
+    600: rgba(black, 0.87), 700: rgba(black, 0.87), 800: rgba(black, 0.87),
     900: rgba(black, 0.87),
-    A100: rgba(black, 0.87),
-    A200: rgba(black, 0.87),
-    A400: rgba(black, 0.87),
-    A700: rgba(black, 0.87),
+    A100: rgba(black, 0.87), A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87), A700: rgba(black, 0.87),
   )
 );
-
 $justplaybo-warn-palette: (
-  50: #fef1f1,
-  100: #fddbdb,
-  200: #fbc4c4,
-  300: #f9acac,
-  400: #f89a9a,
-  500: #f78888,
-  600: #f68080,
-  700: #f57575,
-  800: #f36b6b,
-  900: #f15858,
-  A100: #ffffff,
-  A200: #ffffff,
-  A400: #fff6f6,
-  A700: #ffdcdc,
+  50: #fef1f1, 100: #fddbdb, 200: #fbc4c4, 300: #f9acac, 400: #f89a9a,
+  500: #f78888, 600: #f68080, 700: #f57575, 800: #f36b6b, 900: #f15858,
+  A100: #fff, A200: #fff, A400: #fff6f6, A700: #ffdcdc,
   contrast: (
-    50: rgba(black, 0.87),
-    100: rgba(black, 0.87),
-    200: rgba(black, 0.87),
-    300: rgba(black, 0.87),
-    400: rgba(black, 0.87),
-    500: rgba(black, 0.87),
-    600: rgba(black, 0.87),
-    700: rgba(black, 0.87),
-    800: rgba(black, 0.87),
+    50:  rgba(black, 0.87), 100: rgba(black, 0.87), 200: rgba(black, 0.87),
+    300: rgba(black, 0.87), 400: rgba(black, 0.87), 500: rgba(black, 0.87),
+    600: rgba(black, 0.87), 700: rgba(black, 0.87), 800: rgba(black, 0.87),
     900: rgba(black, 0.87),
-    A100: rgba(black, 0.87),
-    A200: rgba(black, 0.87),
-    A400: rgba(black, 0.87),
-    A700: rgba(black, 0.87),
+    A100: rgba(black, 0.87), A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87), A700: rgba(black, 0.87),
   )
 );
 
-$justplaybo-primary: mat.m2-define-palette($justplaybo-primary-palette, 500, 100, 800);
-$justplaybo-accent: mat.m2-define-palette($justplaybo-accent-palette, 500, 100, 800);
-$justplaybo-warn: mat.m2-define-palette($justplaybo-warn-palette, 500, 100, 800);
-
-$justplaybo-typography: mat.m2-define-typography-config(
-  $font-family: 'Roboto, "Helvetica Neue", sans-serif',
+$jp-mat-typography: mat.m2-define-typography-config(
+  $font-family: 'Alegreya Sans, "Helvetica Neue", system-ui, sans-serif',
 );
 
-$justplaybo-theme: mat.m2-define-light-theme((
+$jp-mat-theme: mat.m2-define-light-theme((
   color: (
-    primary: $justplaybo-primary,
-    accent: $justplaybo-accent,
-    warn: $justplaybo-warn,
+    primary: mat.m2-define-palette($justplaybo-primary-palette, 500, 100, 800),
+    accent:  mat.m2-define-palette($justplaybo-accent-palette,  500, 100, 800),
+    warn:    mat.m2-define-palette($justplaybo-warn-palette,    500, 100, 800),
   ),
-  typography: $justplaybo-typography,
+  typography: $jp-mat-typography,
   density: 0,
 ));
+@include mat.all-component-themes($jp-mat-theme);
 
-@include mat.all-component-themes($justplaybo-theme);
+// ─── Design tokens ──────────────────────────────────────────────────────────
+// All palette construction in OKLCH. Neutrals tinted toward the Arci red hue
+// (~27°) at chroma ~0.005-0.015 — perceptible cohesion without coloring.
+// Light = daytime paper (warm cream + ink-brown).
+// Dark  = evening felt-table (warm dark brown + parchment ivory).
+// NEVER pure black (#000) or pure white (#fff).
 
 :root {
-  --jp-brand: #9b2324;
+  color-scheme: light dark;
+
+  // Brand — the Arci red. Same hue across themes; lightness shifts for dark.
+  --jp-brand-light: oklch(0.45 0.16  27);   // ≈ #9b2324, the soul anchor
+  --jp-brand-dark:  oklch(0.62 0.165 27);   // brighter on felt for AA contrast
+  --jp-brand:       light-dark(var(--jp-brand-light), var(--jp-brand-dark));
+  --jp-brand-ink:   light-dark(#9b2324, #d24c4d);  // legacy alias kept for components
+
+  // Surfaces
+  --jp-paper:       light-dark(oklch(0.97 0.006 27), oklch(0.18 0.012 27));
+  --jp-paper-deep:  light-dark(oklch(0.94 0.010 27), oklch(0.22 0.014 27));
+  --jp-paper-deeper:light-dark(oklch(0.91 0.014 27), oklch(0.26 0.016 27));
+
+  // Text
+  --jp-ink:         light-dark(oklch(0.22 0.018 27), oklch(0.92 0.018 60));
+  --jp-ink-soft:    light-dark(oklch(0.42 0.022 27), oklch(0.74 0.020 50));
+  --jp-ink-faint:   light-dark(oklch(0.58 0.018 27), oklch(0.55 0.018 40));
+
+  // Hairlines
+  --jp-rule:        light-dark(oklch(0.84 0.012 27), oklch(0.32 0.014 27));
+  --jp-rule-strong: light-dark(oklch(0.72 0.018 27), oklch(0.42 0.018 27));
+
+  // Selection
+  --jp-selection-bg: light-dark(oklch(0.88 0.10 27 / 0.55), oklch(0.45 0.16 27 / 0.55));
+
+  // Type
+  --jp-display: 'Caprasimo', 'Georgia', serif;
+  --jp-serif:   'Alegreya', 'Iowan Old Style', 'Hoefler Text', Georgia, serif;
+  --jp-sans:    'Alegreya Sans', 'Helvetica Neue', system-ui, sans-serif;
+
+  // Type scale (modular, 1.25 base ratio, fluid headings via clamp)
+  --fs-2xs: 0.75rem;
+  --fs-xs:  0.875rem;
+  --fs-sm:  0.9375rem;
+  --fs-base:1.0625rem;          // body slightly above 16 — the FAQ is dense
+  --fs-md:  1.1875rem;
+  --fs-lg:  clamp(1.25rem, 0.95rem + 1.2vw, 1.5rem);
+  --fs-xl:  clamp(1.5rem,  1.05rem + 1.8vw, 2rem);
+  --fs-2xl: clamp(2rem,    1.1rem  + 3.5vw, 3rem);
+  --fs-display: clamp(2.75rem, 1.2rem + 6vw, 5.5rem);
+
+  // Line heights
+  --lh-tight: 1.08;
+  --lh-snug:  1.25;
+  --lh-body:  1.65;
+  --lh-loose: 1.8;
+
+  // 4pt spacing scale, semantic names not pixel names
+  --sp-2xs: 4px;
+  --sp-xs:  8px;
+  --sp-sm:  12px;
+  --sp-md:  16px;
+  --sp-lg:  24px;
+  --sp-xl:  32px;
+  --sp-2xl: 48px;
+  --sp-3xl: 64px;
+  --sp-4xl: 96px;
+
+  // Shape — used sparingly; the aesthetic is paper-flat, not card-heavy
+  --jp-radius-sm: 4px;
+  --jp-radius-md: 8px;
+  --jp-radius-pill: 999px;
+
+  // Motion
+  --easing: cubic-bezier(0.16, 1, 0.3, 1);   // ease-out-quint
+  --dur-fast:    140ms;
+  --dur-medium:  260ms;
+  --dur-slow:    420ms;
+
+  // Layout
+  --measure: 65ch;
+  --container-max: 78rem;
+  --container-pad: clamp(var(--sp-md), 4vw, var(--sp-2xl));
+
+  // Iconography (MDI sprite)
+  --jp-icon-size: 22px;
 }
 
-html, body { height: 100%; }
+// ─── Reset + base typography ────────────────────────────────────────────────
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  height: 100%;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 body {
+  height: 100%;
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: var(--jp-paper);
+  color: var(--jp-ink);
+  font-family: var(--jp-serif);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  font-feature-settings: 'kern' 1, 'liga' 1, 'onum' 1;     // old-style figures, ligatures
+  text-align: left;
+  accent-color: var(--jp-brand);
 }
 
-.mat-raised-button,
-.mat-stroked-button,
-.mat-flat-button {
-  padding: 0 1.15em;
-  margin: 0 .65em;
-  min-width: 3em;
-  line-height: 36.4px;
+::selection {
+  background: var(--jp-selection-bg);
+  color: var(--jp-ink);
 }
 
-.material-icons {
-  font-size: 24px;
-  font-family: 'Material Icons';
+// Headings — display face on the very loudest level only; serif on the rest.
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 var(--sp-md) 0;
+  color: var(--jp-ink);
+  font-weight: 700;
+  line-height: var(--lh-snug);
+  text-wrap: balance;
 }
 
-.mat-icon svg {
-  height: 24px;
-  width: 24px;
+h1 {
+  font-family: var(--jp-display);
+  font-weight: 400;                     // Caprasimo is single-weight
+  font-size: var(--fs-display);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.005em;
+  margin-bottom: var(--sp-lg);
+}
+h2 { font-size: var(--fs-2xl); margin-top: var(--sp-2xl); }
+h3 { font-size: var(--fs-xl);  margin-top: var(--sp-xl);  }
+h4 { font-size: var(--fs-lg);  font-weight: 600; }
+h5 { font-size: var(--fs-md);  font-weight: 600; }
+h6 { font-size: var(--fs-base);font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--jp-ink-soft); }
+
+p {
+  margin: 0 0 var(--sp-md) 0;
+  max-width: var(--measure);
 }
 
-// Touch targets: bump Material's 40×40 icon buttons to the 44×44 minimum.
-.mat-mdc-icon-button {
-  min-width: 44px;
-  min-height: 44px;
+a {
+  color: var(--jp-brand);
+  text-decoration-color: color-mix(in oklab, var(--jp-brand) 35%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color var(--dur-fast) var(--easing),
+              color var(--dur-fast) var(--easing);
+}
+a:hover  { text-decoration-color: var(--jp-brand); }
+a:visited{ color: var(--jp-brand); }
+
+strong, b { font-weight: 700; }
+em, i     { font-style: italic; }
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--jp-rule);
+  margin: var(--sp-xl) 0;
 }
 
-// Single source of truth for the recurring brand-red text link
-// used across home / sustain / sustain-ad / list. Replaces four
-// duplicated `color: red` blocks in component stylesheets.
+img, video, iframe { max-width: 100%; height: auto; display: block; }
+iframe             { border: 0; }
+
+// Focus — replace the default ring with one tinted to the brand. Never remove.
+:focus-visible {
+  outline: 2px solid var(--jp-brand);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+// ─── Material overrides (list page still uses mat-table / -progress-bar) ───
+
+.mat-icon svg { height: var(--jp-icon-size); width: var(--jp-icon-size); }
+
+// Material progress-bar tinted to brand red.
+.mat-mdc-progress-bar {
+  --mdc-linear-progress-active-indicator-color: var(--jp-brand);
+}
+
+// Material table picks up our font + ink color.
+.mat-mdc-table {
+  font-family: var(--jp-sans);
+  background: transparent;
+}
+.mat-mdc-header-cell {
+  font-family: var(--jp-sans);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: var(--fs-xs);
+  color: var(--jp-ink-soft);
+}
+.mat-mdc-cell {
+  font-family: var(--jp-serif);
+  font-size: var(--fs-sm);
+  color: var(--jp-ink);
+}
+
+// ─── Utilities ──────────────────────────────────────────────────────────────
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.measure { max-width: var(--measure); }
+
+// The recurring brand-red text link used across home / sustain / sustain-ad / list.
 .custom-link {
-  &, &:visited {
-    color: var(--jp-brand);
-  }
-  text-decoration: none;
+  &, &:visited { color: var(--jp-brand); }
+  font-family: var(--jp-sans);
   font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color var(--dur-fast) var(--easing);
 
-  &:hover { text-decoration: underline; }
+  &:hover { text-decoration: underline; text-underline-offset: 0.22em; }
   &:focus-visible {
     outline: 2px solid var(--jp-brand);
     outline-offset: 3px;
     border-radius: 2px;
+  }
+}
+
+// Visually-hidden but screen-reader-accessible.
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+// ─── Reduced motion ─────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

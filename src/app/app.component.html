@@ -1,40 +1,68 @@
-<mat-toolbar color="primary" class="mat-elevation-z6">
-  <mat-toolbar-row>
-    <a routerLink="/home" class="brand-link" aria-label="Just Play Bologna - Home">
-      @if (!isSmallScreen) {
-        <img height="64" src="assets/jp_icon.png" alt="">
-        <img height="64" src="assets/jp_name.png" alt="Just Play Bologna">
-      } @else {
-        <img height="56" src="assets/jp_icon.png" alt="Just Play Bologna">
-      }
-    </a>
-    <span class="spacer"></span>
-    <a href="https://www.facebook.com/justplaybologna" target="_blank" rel="noopener" mat-icon-button aria-label="Facebook"><mat-icon svgIcon="facebook"></mat-icon></a>
-    <a href="https://www.instagram.com/justplaybologna/" target="_blank" rel="noopener" mat-icon-button aria-label="Instagram"><mat-icon svgIcon="instagram"></mat-icon></a>
-    <a href="https://www.youtube.com/channel/UCNa0SvpXTR_AJ7Tr32N53TQ" target="_blank" rel="noopener" mat-icon-button aria-label="YouTube"><mat-icon svgIcon="youtube"></mat-icon></a>
-    <a href="https://t.me/justplaybologna" target="_blank" rel="noopener" mat-icon-button aria-label="Telegram"><mat-icon svgIcon="telegram"></mat-icon></a>
-    @if (!isSmallScreen) {
-      <a href="https://github.com/JustPlayBo" target="_blank" rel="noopener" mat-icon-button aria-label="GitHub"><mat-icon svgIcon="github"></mat-icon></a>
-      <a href="https://steamcommunity.com/groups/justplaybo" target="_blank" rel="noopener" mat-icon-button aria-label="Steam"><mat-icon svgIcon="steam"></mat-icon></a>
-      <a href="https://discord.gg/89R5hpM" target="_blank" rel="noopener" mat-icon-button aria-label="Discord"><mat-icon svgIcon="discord"></mat-icon></a>
-    }
-  </mat-toolbar-row>
-</mat-toolbar>
+<a class="skip-link" href="#main">Salta al contenuto</a>
 
-<mat-toolbar color="accent" class="mat-elevation-z1">
-  <mat-toolbar-row>
-    <a mat-raised-button color="primary" [routerLink]="['/support']"><mat-icon svgIcon="circle-multiple"></mat-icon> Sostienici!</a>
-    @if (!isSmallScreen) {
-      <span class="spacer"></span>
-    }
-    <a mat-button [routerLink]="['/list']"><mat-icon svgIcon="format-list-text"></mat-icon> I nostri giochi</a>
-    @if (!isSmallScreen) {
-      <a target="_blank" rel="noopener" href="https://sherlock.justplaybo.it" mat-button><mat-icon svgIcon="dice-multiple"></mat-icon> Sherlock Holmes</a>
-    }
-    <a [routerLink]="['/faq']" mat-button><mat-icon svgIcon="information"></mat-icon> FAQ</a>
-    @if (!isSmallScreen) {
-      <span class="spacer"></span>
-    }
-  </mat-toolbar-row>
-</mat-toolbar>
-<router-outlet></router-outlet>
+<header class="masthead" role="banner">
+  <div class="container masthead-row">
+    <a routerLink="/home" class="brand" aria-label="Just Play Bologna — torna alla home">
+      <img class="brand-mark" src="assets/jp_icon.png" alt="" width="56" height="56" decoding="async">
+      <span class="brand-text">
+        <span class="brand-name">Just Play Bologna</span>
+        <span class="brand-tag">Ludoteca · Casa del Popolo · Corticella</span>
+      </span>
+    </a>
+
+    <nav class="masthead-social" aria-label="I nostri canali social">
+      <a href="https://www.facebook.com/justplaybologna" target="_blank" rel="noopener" aria-label="Facebook">
+        <mat-icon svgIcon="facebook"></mat-icon>
+      </a>
+      <a href="https://www.instagram.com/justplaybologna/" target="_blank" rel="noopener" aria-label="Instagram">
+        <mat-icon svgIcon="instagram"></mat-icon>
+      </a>
+      <a href="https://t.me/justplaybologna" target="_blank" rel="noopener" aria-label="Telegram">
+        <mat-icon svgIcon="telegram"></mat-icon>
+      </a>
+      <a href="https://www.youtube.com/channel/UCNa0SvpXTR_AJ7Tr32N53TQ" target="_blank" rel="noopener" aria-label="YouTube">
+        <mat-icon svgIcon="youtube"></mat-icon>
+      </a>
+      @if (!isSmallScreen) {
+        <a href="https://github.com/JustPlayBo" target="_blank" rel="noopener" aria-label="GitHub">
+          <mat-icon svgIcon="github"></mat-icon>
+        </a>
+        <a href="https://steamcommunity.com/groups/justplaybo" target="_blank" rel="noopener" aria-label="Steam">
+          <mat-icon svgIcon="steam"></mat-icon>
+        </a>
+        <a href="https://discord.gg/89R5hpM" target="_blank" rel="noopener" aria-label="Discord">
+          <mat-icon svgIcon="discord"></mat-icon>
+        </a>
+      }
+    </nav>
+  </div>
+
+  <div class="container">
+    <svg class="masthead-rule" viewBox="0 0 1000 12" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path d="M0 4 Q 250 3.2, 500 4.1 T 1000 3.7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M0 9 Q 250 9.6, 500 8.7 T 1000 9.3" fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" opacity="0.55"/>
+    </svg>
+  </div>
+
+  <div class="container masthead-nav-row">
+    <nav class="primary-nav" aria-label="Navigazione principale">
+      <ul>
+        <li><a routerLink="/home" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">home</a></li>
+        <li><a routerLink="/list" routerLinkActive="is-active">i nostri giochi</a></li>
+        <li><a routerLink="/faq" routerLinkActive="is-active">faq</a></li>
+        @if (!isSmallScreen) {
+          <li><a href="https://sherlock.justplaybo.it" target="_blank" rel="noopener">sherlock holmes <span class="extlink" aria-hidden="true">↗</span></a></li>
+        }
+      </ul>
+    </nav>
+
+    <a routerLink="/support" class="sostienici-cta">
+      <span>Sostienici</span>
+      <span class="sostienici-arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+</header>
+
+<main id="main" class="page" role="main">
+  <router-outlet></router-outlet>
+</main>

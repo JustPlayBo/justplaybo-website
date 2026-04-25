@@ -1,3 +1,270 @@
-.spacer{
-    flex: 1 1 100px;
+// ─── Skip link (a11y) ──────────────────────────────────────────────────────
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: var(--sp-md);
+  transform: translateY(-200%);
+  background: var(--jp-paper);
+  color: var(--jp-ink);
+  padding: var(--sp-xs) var(--sp-md);
+  border: 1px solid var(--jp-rule-strong);
+  border-radius: var(--jp-radius-sm);
+  font-family: var(--jp-sans);
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 100;
+  transition: transform var(--dur-fast) var(--easing);
+
+  &:focus { transform: translateY(var(--sp-xs)); }
 }
+
+// ─── Masthead ───────────────────────────────────────────────────────────────
+.masthead {
+  background: var(--jp-paper);
+  color: var(--jp-ink);
+  padding-block: clamp(var(--sp-md), 2.5vw, var(--sp-lg));
+  position: relative;
+}
+
+.masthead-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--sp-lg);
+}
+
+@media (max-width: 640px) {
+  .masthead-row {
+    grid-template-columns: 1fr;
+    gap: var(--sp-md);
+  }
+}
+
+// Brand: icon + wordmark + tagline
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-md);
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+
+  &:hover .brand-name { color: var(--jp-brand); }
+  &:focus-visible {
+    outline: 2px solid var(--jp-brand);
+    outline-offset: 4px;
+    border-radius: var(--jp-radius-sm);
+  }
+}
+
+.brand-mark {
+  flex: 0 0 auto;
+  width: clamp(44px, 5vw, 56px);
+  height: auto;
+  border-radius: var(--jp-radius-sm);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.brand-name {
+  font-family: var(--jp-display);
+  font-size: clamp(1.4rem, 1rem + 1.6vw, 2rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--jp-ink);
+  transition: color var(--dur-fast) var(--easing);
+}
+
+.brand-tag {
+  font-family: var(--jp-sans);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--jp-ink-soft);
+  text-transform: lowercase;
+}
+
+@media (max-width: 480px) {
+  .brand-tag { display: none; }
+}
+
+// Social row
+.masthead-social {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  justify-self: end;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--jp-radius-pill);
+    color: var(--jp-ink-soft);
+    text-decoration: none;
+    transition:
+      color var(--dur-fast) var(--easing),
+      background-color var(--dur-fast) var(--easing),
+      transform var(--dur-fast) var(--easing);
+
+    &:hover {
+      color: var(--jp-brand);
+      background: color-mix(in oklab, var(--jp-brand) 8%, transparent);
+    }
+
+    &:active { transform: translateY(1px); }
+  }
+
+  .mat-icon { display: inline-flex; align-items: center; justify-content: center; }
+  .mat-icon svg { height: 20px; width: 20px; }
+}
+
+@media (max-width: 640px) {
+  .masthead-social {
+    justify-self: start;
+    flex-wrap: wrap;
+  }
+}
+
+// ─── Hand-drawn rule ───────────────────────────────────────────────────────
+// Two stacked irregular paths — newspaper masthead double-rule, but with
+// slight wobble so it reads as drawn, not stamped.
+.masthead-rule {
+  display: block;
+  width: 100%;
+  height: 12px;
+  margin-block: var(--sp-md);
+  color: var(--jp-rule-strong);
+  overflow: visible;
+}
+
+// ─── Primary nav ───────────────────────────────────────────────────────────
+.masthead-nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-lg);
+  flex-wrap: wrap;
+}
+
+.primary-nav {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: clamp(var(--sp-sm), 2vw, var(--sp-lg));
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+
+  a {
+    font-family: var(--jp-sans);
+    font-size: var(--fs-md);
+    font-weight: 500;
+    color: var(--jp-ink);
+    text-decoration: none;
+    text-transform: lowercase;
+    letter-spacing: 0.005em;
+    padding: var(--sp-2xs) 0;
+    position: relative;
+    transition: color var(--dur-fast) var(--easing);
+
+    &:hover { color: var(--jp-brand); }
+
+    // Active route: a hand-drawn-feeling dotted underline beneath the baseline.
+    &.is-active {
+      color: var(--jp-brand);
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0; right: 0;
+        bottom: -4px;
+        height: 4px;
+        background-image:
+          radial-gradient(circle at 20% 50%, currentColor 1.4px, transparent 1.6px);
+        background-size: 8px 4px;
+        background-repeat: repeat-x;
+        opacity: 0.85;
+      }
+    }
+
+    .extlink {
+      font-size: 0.75em;
+      color: var(--jp-ink-faint);
+      margin-left: 2px;
+    }
+  }
+}
+
+// ─── Sostienici CTA ─────────────────────────────────────────────────────────
+// The one place the Arci red flares up in the chrome. Solid pill, generous
+// padding, paper-color text. Hover lifts ~1px with brand-tinted shadow.
+.sostienici-cta {
+  --cta-bg: var(--jp-brand);
+  --cta-fg: light-dark(#fdf6f1, #1a0f0d);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  padding: var(--sp-sm) var(--sp-lg);
+  background: var(--cta-bg);
+  color: var(--cta-fg);
+  font-family: var(--jp-sans);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border-radius: var(--jp-radius-pill);
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.08);
+  transition:
+    transform var(--dur-fast) var(--easing),
+    box-shadow var(--dur-fast) var(--easing),
+    background-color var(--dur-fast) var(--easing);
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px -2px color-mix(in oklab, var(--jp-brand) 35%, transparent);
+    background: color-mix(in oklab, var(--jp-brand) 92%, black);
+  }
+  &:active { transform: translateY(0); }
+  &:focus-visible {
+    outline: 2px solid var(--jp-ink);
+    outline-offset: 3px;
+  }
+
+  .sostienici-arrow {
+    transition: transform var(--dur-medium) var(--easing);
+    display: inline-block;
+  }
+  &:hover .sostienici-arrow { transform: translateX(3px); }
+}
+
+@media (max-width: 480px) {
+  .masthead-nav-row { gap: var(--sp-md); }
+  .sostienici-cta {
+    flex: 1 0 auto;
+    justify-content: center;
+  }
+  .primary-nav ul { font-size: var(--fs-sm); }
+}
+
+// ─── Page content wrapper ──────────────────────────────────────────────────
+.page {
+  display: block;
+  min-height: 60vh;
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: clamp(var(--sp-lg), 4vw, var(--sp-2xl)) var(--container-pad);
+}
+
+// Legacy spacer kept for any lingering uses
+.spacer { flex: 1 1 100px; }
