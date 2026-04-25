@@ -190,17 +190,27 @@
   }
 }
 
-.activity-photo {
+.activity-firsttime-lede {
+  font-family: var(--jp-serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 0.9rem + 0.6vw, 1.3rem);
+  line-height: 1.5;
+  color: var(--jp-ink);
   margin: 0 0 var(--sp-lg) 0;
+  max-width: 32em;
 
-  img {
-    width: 100%;
-    height: auto;
-    border-radius: var(--jp-radius-md);
-    display: block;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    background: var(--jp-paper-deeper);
+  // A small hanging mark to lead the lede — paper-zine flourish, not decoration.
+  position: relative;
+  padding-left: var(--sp-lg);
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 14px;
+    height: 2px;
+    background: var(--jp-brand);
   }
 }
 
