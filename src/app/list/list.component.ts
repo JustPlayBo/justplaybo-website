@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Game, ListService } from '../list.service';
 import { ActivatedRoute } from '@angular/router';
 
+/** Shelf of box covers, or the dense sortable table. */
+export type ListView = 'shelf' | 'table';
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -19,11 +22,15 @@ export class ListComponent implements OnInit {
 
   displayedColumns = ['name', 'players', 'duration', 'complexity', 'bggurl'];
 
+  view: ListView = 'shelf';
+  private readonly viewKey = 'jp-list-view';
+
   constructor(
     private listService: ListService,
     private route: ActivatedRoute,
   ) {
     this.listService.loaded.subscribe(() => this.updateList());
+    this.view = this.storedView() ?? 'shelf';
   }
 
   ngOnInit() {
@@ -35,6 +42,16 @@ export class ListComponent implements OnInit {
   isRowVisible(game: Game): boolean {
     if (!this.isSustainLinkVisible()) return true;
     return game.ab?.toUpperCase() === this.selectedList;
+  }
+
+  setView(view: ListView) {
+    this.view = view;
+    try { localStorage.setItem(this.viewKey, view); } catch { /* private mode: keep the choice for this visit only */ }
+  }
+
+  /** Complexity as an Italian label, for the box plate on the shelf. */
+  getComplexityDotClass(game: Game): string {
+    return `dot-${this.getClassName(game)}`;
   }
 
   isSustainLinkVisible(): boolean {
@@ -72,6 +89,15 @@ export class ListComponent implements OnInit {
         v != null && String(v).toLowerCase().includes(q),
       );
     });
+  }
+
+  private storedView(): ListView | null {
+    try {
+      const v = localStorage.getItem(this.viewKey);
+      return v === 'shelf' || v === 'table' ? v : null;
+    } catch {
+      return null;
+    }
   }
 
   private computeTitle(selectedList: string | null): string {

@@ -16,23 +16,46 @@
   </p>
 }
 
-<div class="list-search">
-  <label class="list-search-field">
-    <span class="sr-only">Cerca un gioco</span>
-    <svg class="list-search-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/>
-      <line x1="15" y1="15" x2="20" y2="20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    </svg>
-    <input
-      type="search"
-      placeholder="Cerca per titolo, complessità, durata…"
-      autocomplete="off"
-      [value]="searchTerm"
-      (input)="onSearchInput($any($event.target).value)">
-    @if (searchTerm) {
-      <button type="button" class="list-search-clear" (click)="clearSearch()" aria-label="Cancella la ricerca">×</button>
-    }
-  </label>
+<div class="list-controls">
+  <div class="list-search">
+    <label class="list-search-field">
+      <span class="sr-only">Cerca un gioco</span>
+      <svg class="list-search-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <line x1="15" y1="15" x2="20" y2="20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <input
+        type="search"
+        placeholder="Cerca per titolo, complessità, durata…"
+        autocomplete="off"
+        [value]="searchTerm"
+        (input)="onSearchInput($any($event.target).value)">
+      @if (searchTerm) {
+        <button type="button" class="list-search-clear" (click)="clearSearch()" aria-label="Cancella la ricerca">×</button>
+      }
+    </label>
+  </div>
+
+  <div class="view-toggle" role="group" aria-label="Come guardare la collezione">
+    <button
+      type="button"
+      class="view-toggle-btn"
+      [class.is-active]="view === 'shelf'"
+      [attr.aria-pressed]="view === 'shelf'"
+      (click)="setView('shelf')">
+      <mat-icon svgIcon="bookshelf"></mat-icon>
+      <span>Scaffale</span>
+    </button>
+    <button
+      type="button"
+      class="view-toggle-btn"
+      [class.is-active]="view === 'table'"
+      [attr.aria-pressed]="view === 'table'"
+      (click)="setView('table')">
+      <mat-icon svgIcon="view-list"></mat-icon>
+      <span>Elenco</span>
+    </button>
+  </div>
 </div>
 
 @if (list.length && !filteredList.length) {
@@ -42,7 +65,37 @@
   </p>
 }
 
-@if (filteredList.length) {
+@if (filteredList.length && view === 'shelf') {
+  <ul class="kallax">
+    @for (game of filteredList; track game.bggId + game.title) {
+      <li class="cubby">
+        <a
+          class="cubby-link"
+          [attr.href]="game.bgg || null"
+          [attr.target]="game.bgg ? '_blank' : null"
+          [attr.rel]="game.bgg ? 'noopener' : null"
+          [attr.aria-label]="game.bgg ? 'Apri la scheda BoardGameGeek di ' + game.title : null">
+          <span class="cubby-shelf">
+            @if (game.cover) {
+              <img class="game-box" [src]="game.cover" alt="" loading="lazy" decoding="async">
+            } @else {
+              <span class="game-box game-box--blank">{{ game.title }}</span>
+            }
+          </span>
+          <span class="cubby-title">{{ game.title }}</span>
+        </a>
+        <p class="cubby-meta">
+          <span class="cubby-dot" [ngClass]="getComplexityDotClass(game)" aria-hidden="true"></span>
+          <span class="sr-only">Complessità:</span>{{ game.complexity }}
+          @if (game.players) { <span aria-hidden="true">·</span> <span class="sr-only">Giocatori:</span>{{ game.players }} }
+          @if (game.duration) { <span aria-hidden="true">·</span> <span class="sr-only">Durata:</span>{{ game.duration }}′ }
+        </p>
+      </li>
+    }
+  </ul>
+}
+
+@if (filteredList.length && view === 'table') {
   <table mat-table [dataSource]="filteredList" matSort class="games-table">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Titolo</th>
