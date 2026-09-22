@@ -8,7 +8,7 @@ export type ListView = 'shelf' | 'table';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
+  styleUrls: ['./list.component.scss', './list.component.kallax.scss'],
   providers: [ListService],
   standalone: false,
 })

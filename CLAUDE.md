@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 - `npm start` (or `ng serve`) — dev server on http://localhost:4200/, live reload.
-- `npm run build` — production bundle into `dist/justplaybo-website-new`. Pass `--configuration=production` explicitly for the production config (applies `environment.prod.ts` replacement, budgets: 2mb warn / 5mb error initial, 8kb / 10kb per component style — the per-component warning was raised from 6kb when `ListComponent` grew a second view).
+- `npm run build` — production bundle into `dist/justplaybo-website-new`. Pass `--configuration=production` explicitly for the production config (applies `environment.prod.ts` replacement, budgets: 2mb warn / 5mb error initial, 6kb / 10kb per component style).
 - `npm test` — Karma/Jasmine unit tests. To run a single spec, use `ng test --include=src/app/<path>/<file>.component.spec.ts` or temporarily narrow with `fdescribe` / `fit`.
 
 No lint target exists. There are no e2e tests (Protractor was dropped during the v11 → v12 upgrade and no replacement was added).
@@ -31,7 +31,7 @@ Single-module Angular SPA for the Just Play Bologna board-game association (Ital
 - `ListService` (`src/app/list.service.ts`) calls `Papa.parse(listUrl, { download: true, header: true })` in its constructor and emits a `loaded` EventEmitter when rows arrive. The `listUrl` points to a specific published sheet; changing the sheet means changing this URL.
 - `ListService` is provided at the **component level** (`providers: [ListService]` inside `ListComponent`), not in the module. Each navigation to `/list` re-fetches.
 - Cover art is **not** in the sheet. `src/assets/covers.json` maps BGG id → image URL on BGG's CDN, and `ListService` `forkJoin`s it with the CSV, adding `bggId`/`cover` to each row. BGG's API sends no CORS header, so the browser cannot build this map: regenerate it with `docker run --rm -v $(pwd):/app -w /app node:22-alpine node tools/fetch-covers.mjs` (skips ids it already has; `--refresh` re-fetches all). Games added to the sheet render as a blank box until that runs.
-- `ListComponent` has two views — the Kallax shelf of box covers and the original sortable table — toggled in the template and remembered in `localStorage` under `jp-list-view`.
+- `ListComponent` has two views — the Kallax shelf of box covers and the original sortable table — toggled in the template and remembered in `localStorage` under `jp-list-view`. The shelf's styles live in a second stylesheet, `list.component.kallax.scss`, so each file stays inside the 6kb per-component budget.
 - CSV header is `bgg,title,players,duration,complexity,y,ab`, typed as `Game` in `list.service.ts`. The parser trims every cell and drops rows without a `title`. `players`/`duration` are mostly empty, and `bgg` is sometimes empty. `complexity` is `Semplice`/`Media`/`Elevata` (drives the row colour class). `ab` is the support-campaign list (`A`/`B`/empty) that `/list/A` and `/list/B` filter on. `y` (`Y`/empty) is not used by the site.
 
 **HttpClient** is wired through `provideHttpClient(withInterceptorsFromDi())` in `AppModule.providers` (v18 migration replaced `HttpClientModule`).

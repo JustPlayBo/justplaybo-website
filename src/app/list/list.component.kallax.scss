@@ -1,0 +1,193 @@
+// ─── The Kallax ────────────────────────────────────────────────────────────
+// A wall of cubbies with a box standing in each one. The frame is the grid
+// itself: cubbies sit on the shelf's white lacquer and the gaps between them
+// read as its uprights and crosspieces.
+.kallax {
+  // White lacquer, warmed toward the paper so it never goes clinical; in the
+  // dark theme it is the same shelf seen in a dim room, not a glaring slab.
+  --shelf-white: light-dark(oklch(0.975 0.004 30), oklch(0.80 0.008 40));
+  --shelf-edge:  light-dark(oklch(0.88 0.008 30), oklch(0.66 0.010 40));
+  --cubby-back:  light-dark(oklch(0.925 0.008 35), oklch(0.215 0.014 35));
+  --cubby-floor: light-dark(oklch(0.85 0.012 40), oklch(0.27 0.018 40));
+  // Box shadows: the thickness of the box, then how it meets the shelf.
+  --box-edge: -3px 1px 0 color-mix(in oklab, var(--jp-ink) 28%, transparent);
+  --box-rest: 0 6px 8px -4px color-mix(in oklab, var(--jp-ink) 55%, transparent);
+  --box-lift: 0 16px 22px -10px color-mix(in oklab, var(--jp-ink) 65%, transparent);
+
+  position: relative;
+  list-style: none;
+  margin: var(--sp-lg) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 12px;
+  background-color: var(--shelf-white);
+  border: 14px solid var(--shelf-white);
+  border-radius: 3px;
+  box-shadow:
+    0 0 0 1px var(--shelf-edge),
+    0 2px 0 var(--shelf-edge),
+    0 22px 36px -24px color-mix(in oklab, var(--jp-ink) 65%, transparent);
+
+  // A painted rail across the top of the unit — the one place the red is
+  // allowed to be loud.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -14px -14px auto;
+    height: 5px;
+    background: var(--jp-brand);
+    border-radius: 3px 3px 0 0;
+  }
+}
+
+.cubby {
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-sm) var(--sp-xs) var(--sp-xs);
+  background: var(--cubby-back);
+  // The back wall sits in shade, the cut edge of the ply catches light along
+  // the top, and the floor picks up a little bounce.
+  box-shadow:
+    inset 0 14px 16px -14px color-mix(in oklab, var(--jp-ink) 95%, transparent),
+    inset 0 1px 0 color-mix(in oklab, var(--shelf-white) 75%, transparent),
+    inset 0 -1px 0 var(--cubby-floor);
+}
+
+.cubby-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+
+  &:focus-visible {
+    outline: 2px solid var(--jp-brand);
+    outline-offset: 3px;
+  }
+}
+
+// The shelf floor the box stands on.
+.cubby-shelf {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: clamp(7.5rem, 12vw, 9rem);
+  // Full-bleed past the cubby padding: the floor is a board wall to wall.
+  margin: 0 calc(var(--sp-xs) * -1);
+  padding: 0 var(--sp-xs);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 2px;
+    background: var(--cubby-floor);
+    transition: background-color var(--dur-medium) var(--easing);
+  }
+}
+
+.game-box {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  border-radius: 2px;
+  outline: 1px solid color-mix(in oklab, var(--jp-ink) 16%, transparent);
+  outline-offset: -1px;
+  transform-origin: bottom center;
+  // Nobody shelves games perfectly straight.
+  transform: rotate(var(--tilt, 0deg));
+  box-shadow: var(--box-edge), var(--box-rest);
+  transition:
+    transform var(--dur-medium) var(--easing),
+    box-shadow var(--dur-medium) var(--easing);
+}
+
+.cubby:nth-child(odd)  { --tilt: -0.7deg; }
+.cubby:nth-child(even) { --tilt: 0.5deg; }
+
+// Reaching for a box lights its shelf.
+.cubby-link:hover .cubby-shelf::after,
+.cubby-link:focus-visible .cubby-shelf::after {
+  background: var(--jp-brand);
+}
+
+// Pull the box off the shelf on hover.
+.cubby-link:hover .game-box,
+.cubby-link:focus-visible .game-box {
+  transform: translateY(-7px) rotate(0deg) scale(1.03);
+  box-shadow: var(--box-edge), var(--box-lift);
+}
+
+// The handful of games with no BoardGameGeek page: a plain box with the title
+// written on the lid, the way a shelf really looks when a box is unbranded.
+.game-box--blank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 78%;
+  padding: var(--sp-xs);
+  background: light-dark(oklch(0.86 0.035 70), oklch(0.32 0.028 60));
+  border: 1px solid color-mix(in oklab, var(--jp-ink) 18%, transparent);
+  color: var(--jp-ink-soft);
+  font-family: var(--jp-display);
+  font-size: var(--fs-2xs);
+  line-height: 1.15;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.cubby-title {
+  margin-top: var(--sp-sm);
+  font-family: var(--jp-sans);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--jp-ink);
+  // Two lines, so the shelf rows stay level.
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  .cubby-link:hover &,
+  .cubby-link:focus-visible & {
+    color: var(--jp-brand);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+}
+
+.cubby-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3em;
+  margin: var(--sp-2xs) 0 0;
+  font-family: var(--jp-sans);
+  font-size: var(--fs-2xs);
+  color: var(--jp-ink-soft);
+}
+
+.cubby-dot {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+// Same complexity coding as the table's row tints, at dot scale.
+.dot-green  { background: oklch(0.72 0.13 130); }
+.dot-yellow { background: oklch(0.80 0.14  90); }
+.dot-red    { background: var(--jp-brand); }
+.dot-gray   { background: var(--jp-rule-strong); }
+
+@media (prefers-reduced-motion: reduce) {
+  .game-box { transition: none; }
+
+  .cubby-link:hover .game-box,
+  .cubby-link:focus-visible .game-box {
+    transform: none;
+  }
+}
