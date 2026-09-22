@@ -46,7 +46,7 @@
   <table mat-table [dataSource]="filteredList" matSort class="games-table">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Titolo</th>
-      <td mat-cell *matCellDef="let element">{{ element.titolo }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.title }}</td>
     </ng-container>
 
     <ng-container matColumnDef="players">
@@ -67,7 +67,9 @@
     <ng-container matColumnDef="bggurl">
       <th mat-header-cell *matHeaderCellDef>Dettagli</th>
       <td mat-cell *matCellDef="let element">
-        <a href="{{ element.bgg }}" target="_blank" rel="noopener" aria-label="Apri scheda BoardGameGeek di {{ element.titolo }}">BGG ↗</a>
+        @if (element.bgg) {
+          <a [href]="element.bgg" target="_blank" rel="noopener" [attr.aria-label]="'Apri scheda BoardGameGeek di ' + element.title">BGG ↗</a>
+        }
       </td>
     </ng-container>
 

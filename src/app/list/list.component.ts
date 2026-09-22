@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ListService } from '../list.service';
+import { Game, ListService } from '../list.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,8 +10,8 @@ import { ActivatedRoute } from '@angular/router';
   standalone: false,
 })
 export class ListComponent implements OnInit {
-  list: any[] = [];
-  filteredList: any[] = [];
+  list: Game[] = [];
+  filteredList: Game[] = [];
   selectedList: string | null = null;
   title = 'La Nostra Collezione';
   loading = false;
@@ -32,18 +32,17 @@ export class ListComponent implements OnInit {
     this.title = this.computeTitle(this.selectedList);
   }
 
-  isRowVisible(game: any): boolean {
-    if (!this.selectedList) return true;
-    if (!game?.list) return true;
-    return game.list.$t === this.selectedList;
+  isRowVisible(game: Game): boolean {
+    if (!this.isSustainLinkVisible()) return true;
+    return game.ab?.toUpperCase() === this.selectedList;
   }
 
   isSustainLinkVisible(): boolean {
     return this.selectedList === 'A' || this.selectedList === 'B';
   }
 
-  getClassName(game: any): string {
-    switch (game?.complexity?.$t) {
+  getClassName(game: Game): string {
+    switch (game?.complexity) {
       case 'Semplice': return 'green';
       case 'Media': return 'yellow';
       case 'Elevata': return 'red';
@@ -68,7 +67,7 @@ export class ListComponent implements OnInit {
       return;
     }
     this.filteredList = this.list.filter(g => {
-      const fields = [g?.titolo, g?.players, g?.duration, g?.complexity];
+      const fields = [g?.title, g?.players, g?.duration, g?.complexity];
       return fields.some(v =>
         v != null && String(v).toLowerCase().includes(q),
       );
@@ -86,7 +85,7 @@ export class ListComponent implements OnInit {
   private updateList() {
     this.listService.getList().subscribe(data => {
       this.loading = false;
-      this.list = data?.length ? data : [];
+      this.list = (data ?? []).filter(g => this.isRowVisible(g));
       this.applyFilter();
     });
   }

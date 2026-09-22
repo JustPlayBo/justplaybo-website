@@ -30,7 +30,7 @@ Single-module Angular SPA for the Just Play Bologna board-game association (Ital
 
 - `ListService` (`src/app/list.service.ts`) calls `Papa.parse(listUrl, { download: true, header: true })` in its constructor and emits a `loaded` EventEmitter when rows arrive. The `listUrl` points to a specific published sheet; changing the sheet means changing this URL.
 - `ListService` is provided at the **component level** (`providers: [ListService]` inside `ListComponent`), not in the module. Each navigation to `/list` re-fetches.
-- Row filtering (`isRowVisible`) compares `game.list.$t` — a legacy shape from an earlier Google Sheets JSON feed. New rows from the CSV feed may not have this shape; handle both.
+- CSV header is `bgg,title,players,duration,complexity,y,ab`, typed as `Game` in `list.service.ts`. The parser trims every cell and drops rows without a `title`. `players`/`duration` are mostly empty, and `bgg` is sometimes empty. `complexity` is `Semplice`/`Media`/`Elevata` (drives the row colour class). `ab` is the support-campaign list (`A`/`B`/empty) that `/list/A` and `/list/B` filter on. `y` (`Y`/empty) is not used by the site.
 
 **HttpClient** is wired through `provideHttpClient(withInterceptorsFromDi())` in `AppModule.providers` (v18 migration replaced `HttpClientModule`).
 
